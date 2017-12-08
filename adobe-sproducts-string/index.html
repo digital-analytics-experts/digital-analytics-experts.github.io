@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<head>
+	<script>
+		window.explode_product_string = {
+			functions:	{
+				do_split:	function(str, sep = ",")	{
+					if(str != undefined)	{
+						return str.split(sep);
+					}
+				}
+				,
+				sub_split:	function(obj, index)	{
+					if(typeof obj == 'object')	{
+						if(index != 'undefined')	{
+							return obj[index].sub == 'undefined' ? false : obj[index].sub;
+						}
+					}
+				}
+				,
+				build_table:	function(data, obj)	{
+					//	start by building a table and giving it a header row
+					var table = document.createElement('table');
+					var heads = fn.get_headers(obj);
+					var header = table.createTHead();
+					var row = header.insertRow(0);
+					for (var h = 0; h < heads.length; h++)	{
+						var cell = row.insertCell(h);
+						cell.innerHTML = heads[h];
+					}
+//					console.log("'data' is currently: " + JSON.stringify(data, null, '\t'));
+//					console.log("'obj' is currently: " + JSON.stringify(obj, null, '\t'));
+					
+					//	process the result of parsing the products string
+					var result = fn.parse_string(data, obj);
+//					console.log("'result' is currently: " + JSON.stringify(result, null, '\t'));
+					for (var r = 0; r < result.length; r++)	{
+						var row = table.insertRow(r + 1);
+						for (var c = 0; c < result[r].length; c++)	{
+							var cell = row.insertCell(c);
+							cell.innerHTML = result[r][c];
+						}
+					}
+					return table;
+				}
+				,
+				get_headers:	function(obj)	{
+					if(typeof obj == 'object')	{
+						var headers = [];
+						for(var i = 0; i < obj.length; i++)	{
+							headers.push(obj[i].name);
+						}
+						return headers;
+					}
+				}
+				,
+				parse_string:	function(str, obj)	{
+					var result = [];
+					var prods = fn.do_split(str);
+//					console.log("'prods' is currently: " + JSON.stringify(prods, null, '\t'));
+					
+					for(var p = 0; p < prods.length; p++)	{
+						var cats = fn.do_split(prods[p], ";");
+//					console.log("'cats' is currently: " + JSON.stringify(cats, null, '\t'));
+						var split_cat = [];
+						for(var pa = 0; pa < obj.length && pa < cats.length; pa++)	{
+							var temp_sub = fn.sub_split(obj, pa);
+//					console.log("'temp_sub' is currently: " + JSON.stringify(temp_sub, null, '\t'));
+							var temp_sep = (obj[pa].sep != 'undefined' ? obj[pa].sep : "");
+//					console.log("'temp_sep' is currently: " + JSON.stringify(temp_sep, null, '\t'));
+							split_cat.push(temp_sub ? ("<pre>" + fn.do_split(cats[pa], temp_sep).join("\n") + "</pre>") : cats[pa]);
+//					console.log("'split_cat' is currently: " + JSON.stringify(split_cat, null, '\t'));
+						}
+						result.push(split_cat);
+					}
+//					console.log("Array being returned from 'parse_string' is: " + "\n");
+//					console.log(JSON.stringify(result, null, '\t'));
+					return result;
+				}
+
+			}
+			,
+			product_attributes:	[
+				{
+					"name": "Category",
+					"sub": false
+				},
+				{
+					"name": "Product",
+					"sub": false
+				},
+				{
+					"name": "Quantity",
+					"sub": false
+				},
+				{
+					"name": "Price",
+					"sub": false
+				},
+				{
+					"name": "Events",
+					"sub": true,
+					"sep": "|"
+				},
+				{
+					"name": "eVars",
+					"sub": true,
+					"sep": "|"
+				}
+			]
+
+		}
+		window.fn = explode_product_string.functions;
+		window.prod_attr = explode_product_string.product_attributes;
+	</script>
+			
+<script>
+function validateForm() {
+    var x = document.getElementById('sproducts').value;
+    if (x == "") {
+        alert("Field cannot be empty");
+        return false;
+    }	else	{
+		var table_html = explode_product_string.functions.build_table(x, prod_attr);
+		document.getElementById('result').innerHTML = "";
+		document.getElementById('result').appendChild(table_html);
+	}
+}
+</script>
+</head>
+<body>
+
+	
+	Adobe Analytics 's.products' string:
+	<input id="sproducts">
+
+	<button type="button" onclick="validateForm()">Submit</button>
+
+
+	
+	<div id="result">
+	</div>
+</body>
+</html>
