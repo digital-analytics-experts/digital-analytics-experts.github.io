@@ -106,7 +106,7 @@
 //					console.log("'temp_sub' is currently: " + JSON.stringify(temp_sub, null, '\t'));
 							var temp_sep = (obj[pa].sep != 'undefined' ? obj[pa].sep : "");
 //					console.log("'temp_sep' is currently: " + JSON.stringify(temp_sep, null, '\t'));
-							split_cat.push(temp_sub ? ("<pre>" + fn.do_split(cats[pa], temp_sep).join("\n") + "</pre>") : cats[pa]);
+							split_cat.push(temp_sub ? (fn.do_split(cats[pa], temp_sep).join("\n")) : cats[pa]);
 //					console.log("'split_cat' is currently: " + JSON.stringify(split_cat, null, '\t'));
 						}
 						result.push(split_cat);
