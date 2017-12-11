@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+	<style>
+		body {
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+/*	width: 100%;	*/
+	white-space: pre;
+	text-align:left;
+	margin:0;
+	}
+	</style>
+			
+<script>
+function validateForm() {
+    var x = document.getElementById('users').value;
+	var f = document.getElementById('filter_text').value;
+	setCookie("filter", f);
+    if (x == "") {
+        alert("'Users' field cannot be empty");
+        return false;
+    }	else	{
+		var y = JSON.parse(x);
+		var emails = "";
+		for(var z = 0; z < y.items.length; z++)	{
+			var email = y.items[z] && y.items[z].userRef && y.items[z].userRef.email;
+			if(f == "" || email.indexOf(f) > -1)	{
+				emails += email + ";";
+			}			
+		}
+		document.getElementById('output').value = emails;
+	}
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+	var exdays = exdays || 3650;
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+</script>
+</head>
+<body>
+
+	
+	GA Users as JSON-style object:
+	<input id="users">
+	<br>
+	Filter text:
+	<input id="filter_text">
+	<br>
+	<button type="button" onclick="validateForm()">Submit</button>
+	<br>
+	Output:
+	<input id="output">
+<script>
+document.getElementById("filter_text").defaultValue = getCookie("filter");
+</script>
+
+	
+	<div id="result">
+	</div>
+</body>
+</html>
