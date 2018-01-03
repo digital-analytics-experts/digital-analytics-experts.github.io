@@ -104,8 +104,8 @@ function handleAccounts(response) {
 	
 	// duplicates();
 	setTimeout(duplicates, 3000);
-	setTimeout(writetxt, 3000);
-	// writetxt();
+	// setTimeout(writetxt, 3000);
+	writetxt();
 
 	
   } else {
@@ -176,7 +176,9 @@ for(i = 0; i < myArray.length; i++)
 		{
 			compareme ++;
 			if(compareme > 1) {
-				myArray[x] = ""; }
+			myArray.splice(x);
+				// myArray[x] = "";
+				}
 			
 			}
 
