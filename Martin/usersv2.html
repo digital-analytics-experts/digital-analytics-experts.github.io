@@ -19,6 +19,8 @@
   var myArray = ["abc@sdfasd.com", "faddsa@gfd.com"];
   var myEmails;
   var nextAccountId;
+  var myEmail;
+  var xyz;
 
   // Set authorized scope.
   // var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
@@ -129,8 +131,6 @@ function queryNextAccounts(accountId) {
 function handleProperties(response) {
   // Handles the response from the webproperties list method.
   if (response.result.items && response.result.items.length) {
-
-	var myEmail;
 	
 	 // var accountLinks = results.items;
 	for(i = 0; i < response.result.items.length; i++)
@@ -145,7 +145,7 @@ function handleProperties(response) {
 	  myArray.push(response.result.items[i].userRef.email);
 
     }
-	  	  	var xyz = myArray.toString();
+	  	  	xyz = myArray.toString();
 	// console.log(xyz);
 	
 	
