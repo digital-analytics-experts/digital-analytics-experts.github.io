@@ -68,7 +68,7 @@ function handleAccounts(response) {
 	accountIds.push(response.result.items[i].id);
 	// store account IDs in array
 	nextAccountId = response.result.items[i].id;
-	queryAccounts(nextAccountId);
+	queryNextAccounts(nextAccountId);
 	}
 	
 	// duplicates();
@@ -82,7 +82,7 @@ function handleAccounts(response) {
 
 
 // get user emails from each account
-function queryAccounts(accountId) {
+function queryNextAccounts(accountId) {
   // Get a list of all the properties for the account.
   gapi.client.analytics.management.accountUserLinks.list(
       {'accountId': accountId})
