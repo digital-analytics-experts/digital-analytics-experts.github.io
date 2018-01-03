@@ -58,11 +58,12 @@
 
 
 var myemails = myArray.join(',');
-myemails.replace(" ","");
+
+var xyz = myArray.toString();
 
 var hiddenElement = document.createElement('a');
 
-hiddenElement.href = 'data:attachment/text,' + encodeURI(myemails);
+hiddenElement.href = 'data:attachment/text,' + encodeURI(xyz);
 hiddenElement.target = '_blank';
 hiddenElement.download = 'myFile.txt';
 hiddenElement.click();
