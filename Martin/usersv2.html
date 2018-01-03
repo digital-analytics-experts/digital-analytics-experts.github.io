@@ -126,16 +126,19 @@ function handleProperties(response) {
 	 // var accountLinks = results.items;
 	for(i = 0; i < response.result.items.length; i++)
 	{
-	  myEmail = response.result.items[i].userRef.email;
-	  myArray.push(myEmail);
+	  // myEmail = response.result.items[i].userRef.email;
+	  // myArray.push(myEmail);
 	  // myArray.push(response.result.items[i].userRef.email);
 	  // myArray.push(response.result.items[i].email);
 	  // console.log(response.result.items[i].userRef.email);
 	  // console.log(myEmail);
+	  
+	  myArray.push(response.result.items[i].userRef.email);
 
     }
 	
-	
+	  	  	var xyz = myArray.toString();
+	console.log(xyz);
 	
 	
 	
