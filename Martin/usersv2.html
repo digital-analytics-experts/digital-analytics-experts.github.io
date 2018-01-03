@@ -45,6 +45,20 @@
       }
     });
   }
+  
+  function writetxt() {
+
+
+var myemails = myArray.join(',')
+
+var hiddenElement = document.createElement('a');
+
+hiddenElement.href = 'data:attachment/text,' + encodeURI(myemails);
+hiddenElement.target = '_blank';
+hiddenElement.download = 'myFile.txt';
+hiddenElement.click();
+
+}
 
 // get list of account Ids
 function queryAccounts() {
@@ -140,19 +154,7 @@ for(i = 0; i < myArray.length; i++)
 
 }
 
-function writetxt() {
 
-
-var myemails = myArray.join(',')
-
-var hiddenElement = document.createElement('a');
-
-hiddenElement.href = 'data:attachment/text,' + encodeURI(myemails);
-hiddenElement.target = '_blank';
-hiddenElement.download = 'myFile.txt';
-hiddenElement.click();
-
-}
 
 
 
