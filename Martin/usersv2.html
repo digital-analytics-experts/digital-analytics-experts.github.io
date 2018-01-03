@@ -17,6 +17,7 @@
   
   var accountIds = [];
   var myArray = ["abc@sdfasd.com", "faddsa@gfd.com"];
+  var newArray = [];
   var myEmails;
   var nextAccountId;
 
@@ -92,7 +93,7 @@ function handleAccounts(response) {
 	nextAccountId = response.result.items[i].id;
 	queryNextAccounts(nextAccountId);
 	
-	var xyz = myArray.toString();
+	var xyz = newArray.toString();
 	console.log(xyz);
 	}
 	
@@ -148,6 +149,8 @@ function handleProperties(response) {
 	
 	  	  	var xyz = myArray.toString();
 	// console.log(xyz);
+	
+	newArray.push.(newArray, myArray);
 	
 	
 	
