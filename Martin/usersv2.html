@@ -100,10 +100,10 @@ function handleAccounts(response) {
 
 // get user emails from each account
 function queryNextAccounts(accountId) {
+	  console.log(accountId);
   // Get a list of all the properties for the account.
   gapi.client.analytics.management.accountUserLinks.list(
       {'accountId': accountId})
-	  console.log(accountId);
     .then(handleProperties)
     .then(null, function(err) {
       // Log any errors.
