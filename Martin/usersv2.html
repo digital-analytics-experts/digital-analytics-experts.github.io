@@ -162,6 +162,8 @@ function duplicates() {
 var compare;
 var compareme;
 
+myArray.sort();
+
 for(i = 0; i < myArray.length; i++)
 {
 
@@ -170,7 +172,7 @@ for(i = 0; i < myArray.length; i++)
 
 	for(x = 0; x < myArray.length; x++)
 	{
-		if (myArray[x] = compare)
+		if (myArray[x] == compare)
 		{
 			compareme ++;
 			if(compareme > 1) {
