@@ -16,7 +16,7 @@
   var CLIENT_ID = '733015638140-da8nkpm0rj9qtnvogslciginfcv3631a.apps.googleusercontent.com';
   
   var accountIds = [];
-  var myArray = [];
+  var myArray = ["abc@sdfasd.com", "faddsa@gfd.com"];
   var myEmails;
   var nextAccountId;
 
@@ -124,7 +124,7 @@ function handleProperties(response) {
 	var myEmail;
 	
 	 // var accountLinks = results.items;
-	for(i = 0; i < 2 /* response.result.items.length */; i++)
+	for(i = 0; i < response.result.items.length; i++)
 	{
 	  myEmail = response.result.items[i].userRef.email;
 	  myArray.push(myEmail);
