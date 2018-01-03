@@ -52,7 +52,7 @@
   function writetxt() {
   
   	  	var xyz = myArray.toString();
-	// console.log(xyz);
+	console.log(xyz);
 	
 	// xyz.replace(" ", "");
 
@@ -84,8 +84,7 @@ function handleAccounts(response) {
   if (response.result.items && response.result.items.length) {
     // Get the first Google Analytics account.
 	
-	// for(i = 0; i < response.result.items.length; i++)
-	for(i = 0; i < 1; i++)
+	for(i = 0; i < response.result.items.length; i++)
 	{
 	
 	accountIds.push(response.result.items[i].id);
