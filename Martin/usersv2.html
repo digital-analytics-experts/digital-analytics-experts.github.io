@@ -52,7 +52,7 @@
   function writetxt() {
   
   	  	var xyz = myArray.toString();
-	console.log(xyz);
+	// console.log(xyz);
 	
 	// xyz.replace(" ", "");
 
@@ -61,7 +61,7 @@ var myemails = myArray.join(',');
 
 var hiddenElement = document.createElement('a');
 
-hiddenElement.href = 'data:attachment/text,' + encodeURI(xyz);
+hiddenElement.href = 'data:attachment/text,' + encodeURI(myemails);
 hiddenElement.target = '_blank';
 hiddenElement.download = 'myFile.txt';
 hiddenElement.click();
