@@ -21,6 +21,7 @@
   var nextAccountId;
   var myEmail;
   var xyz;
+  var abc;
 
   // Set authorized scope.
   // var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
@@ -51,15 +52,26 @@
     });
   }
   
+  function storeMe(array)
+  {
+	abc = abc+array;
+  console.log(abc);
+  
+  
+  
+  
+  }
+  
   function writetxt() {
   
-  	  	var xyz = myArray.toString();
+  	  	xyz = myArray.toString();
 	// console.log(xyz);
 	
 	// xyz.replace(" ", "");
 
 
-var myemails = myArray.join(',');
+// var myemails = myArray.join(',');
+var myemails = abc.join(',');
 
 var hiddenElement = document.createElement('a');
 
@@ -102,8 +114,8 @@ function handleAccounts(response) {
 	// var xyz = myArray.toString();
 	// console.log(xyz);
 	
-	  	  	// var xyz = myArray.toString();
-	console.log(xyz);
+	// var xyz = myArray.toString();
+	// console.log(xyz);
 	
 	writetxt();
 
@@ -145,7 +157,11 @@ function handleProperties(response) {
 	  myArray.push(response.result.items[i].userRef.email);
 
     }
-	  	  	xyz = myArray.toString();
+	
+	xyz = myArray.toString();
+	storeMe(xyz);
+	
+	// xyz = myArray.toString();
 	// console.log(xyz);
 	
 	
