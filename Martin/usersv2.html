@@ -92,8 +92,8 @@ function handleAccounts(response) {
 	}
 	
 	// duplicates();
-	var xyz = myArray.toString();
-	console.log(xyz);
+	// var xyz = myArray.toString();
+	// console.log(xyz);
 	writetxt();
 
 	
@@ -110,10 +110,10 @@ function queryNextAccounts(accountId) {
   gapi.client.analytics.management.accountUserLinks.list(
       {'accountId': accountId})
     .then(handleProperties)
-    .then(null, function(err) {
+    /* .then(null, function(err) {
       // Log any errors.
       console.log(err);
-  });
+  }); */
 }
 
 // get email addresses
@@ -144,6 +144,7 @@ function handleProperties(response) {
   }
 }
 
+/*
 function duplicates() {
 
 var compare;
@@ -167,7 +168,7 @@ for(i = 0; i < myArray.length; i++)
 
 	}
 
-}
+} */
 
 
 
