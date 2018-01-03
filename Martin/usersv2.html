@@ -103,6 +103,7 @@ function queryNextAccounts(accountId) {
   // Get a list of all the properties for the account.
   gapi.client.analytics.management.accountUserLinks.list(
       {'accountId': accountId})
+	  console.log(accountId);
     .then(handleProperties)
     .then(null, function(err) {
       // Log any errors.
@@ -120,6 +121,7 @@ function handleProperties(response) {
 	 // var accountLinks = results.items;
 	for(i = 0; i < response.result.items.length; i++)
 	{
+	  // myArray.push(response.result.items[i].accountUserLink.userRef.email);
 	  myArray.push(response.result.items[i].accountUserLink.userRef.email);
     }
 	
