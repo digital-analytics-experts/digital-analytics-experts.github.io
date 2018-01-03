@@ -118,12 +118,14 @@ function handleProperties(response) {
   // Handles the response from the webproperties list method.
   if (response.result.items && response.result.items.length) {
 
-	
+	var myEmail;
 	
 	 // var accountLinks = results.items;
 	for(i = 0; i < response.result.items.length; i++)
 	{
-	  myArray.push(response.result.items[i].userRef.email);
+	  myEmail = response.result.items[i].userRef.email;
+	  myArray.push(myEmail);
+	  // myArray.push(response.result.items[i].userRef.email);
 	  // myArray.push(response.result.items[i].email);
 	  console.log(response.result.items[i].userRef.email);
     }
