@@ -25,7 +25,6 @@
   var abc;
 
   // Set authorized scope.
-  // var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
   
   var SCOPES = ['https://www.googleapis.com/auth/analytics.manage.users.readonly','https://www.googleapis.com/auth/analytics.readonly'];
   
@@ -89,7 +88,7 @@ function queryAccounts() {
 function handleAccounts(response) {
   // Handles the response from the accounts list method.
   if (response.result.items && response.result.items.length) {
-    // Get the first Google Analytics account.
+    // Get the Google Analytics accounts.
 	
 	for(i = 0; i < response.result.items.length; i++)
 	{
@@ -98,7 +97,6 @@ function handleAccounts(response) {
 	// store account IDs in array
 	nextAccountId = response.result.items[i].id;
 	
-	if(nextAccountId != "111508082")
 	queryNextAccounts(nextAccountId);
 	
 	// var xyz = newArray.toString();
@@ -121,7 +119,7 @@ function handleAccounts(response) {
 // get user emails from each account
 function queryNextAccounts(accountId) {
 	  console.log(accountId);
-  // Get a list of all the properties for the account.
+  // Get a list of all the emails for the account.
   gapi.client.analytics.management.accountUserLinks.list(
       {'accountId': accountId})
     .then(handleProperties)
@@ -139,12 +137,6 @@ function handleProperties(response) {
 	 // var accountLinks = results.items;
 	for(i = 0; i < response.result.items.length; i++)
 	{
-	  // myEmail = response.result.items[i].userRef.email;
-	  // myArray.push(myEmail);
-	  // myArray.push(response.result.items[i].userRef.email);
-	  // myArray.push(response.result.items[i].email);
-	  // console.log(response.result.items[i].userRef.email);
-	  // console.log(myEmail);
 	  
 	  myArray.push(response.result.items[i].userRef.email);
 
@@ -199,16 +191,16 @@ myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 function validateEmail()
 {
 
-var patt = new RegExp("@dyson.com");
+	var patt = new RegExp("@dyson.com");
 
-for(i = 0; i < myArray.length; i++)
-{
+	for(i = 0; i < myArray.length; i++)
+	{
 
-	if(patt.test(myArray[i]))
-	newArray.push(myArray[i]);
-	
+		if(patt.test(myArray[i]))
+		newArray.push(myArray[i]);
+		
 
-}
+	}
 
 }
 
