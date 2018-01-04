@@ -189,12 +189,12 @@ for(i = 0; i < myArray.length; i++)
 }
 
 
-myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
+myArray = myArray.filter(function(entry) { return entry.trim() != '@dyson.com'; });
   
-  while (myArray.indexOf('@dyson.com') !== -1) {
+  /* while (myArray.indexOf('@dyson.com') !== -1) {
   myArray.splice(myArray.indexOf('@dyson.com'), 1);
 
-}
+} */
 
 
 }
