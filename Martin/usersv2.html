@@ -96,6 +96,8 @@ function handleAccounts(response) {
 	accountIds.push(response.result.items[i].id);
 	// store account IDs in array
 	nextAccountId = response.result.items[i].id;
+	
+	if(nextAccountId != "111508082")
 	queryNextAccounts(nextAccountId);
 	
 	// var xyz = newArray.toString();
