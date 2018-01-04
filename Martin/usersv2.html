@@ -191,15 +191,6 @@ for(i = 0; i < myArray.length; i++)
 
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
   
-    var i = arr.length;
-    //-- Loop through the array in reverse order since we are modifying the array.
-    while (i--) {
-        if (myArray[i].indexOf('@dyson.com') < 0) {
-            //-- splice will remove the non-matching element
-            myArray.splice(i, 1);
-        }
-
-}
 }
 
 
