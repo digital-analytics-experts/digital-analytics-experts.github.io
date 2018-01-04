@@ -190,6 +190,9 @@ for(i = 0; i < myArray.length; i++)
 
 
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
+  
+  while (myArray.indexOf('@dyson.com') !== -1) {
+  myArray.splice(myArray.indexOf('@dyson.com'), 1);
 
 }
 
