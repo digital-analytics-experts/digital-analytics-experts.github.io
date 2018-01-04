@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Analytics Users</title>
+</head>
+<body>
+
+<button id="auth-button" hidden>Authorize</button>
+
+<h1>Analytics Users</h1>
+
+<script>
+
+  // Replace with your client ID from the developer console.
+  var CLIENT_ID = '733015638140-da8nkpm0rj9qtnvogslciginfcv3631a.apps.googleusercontent.com';
+  
+  var accountIds = [];
+  var myArray = [];
+  var myEmails;
+  var nextAccountId;
+  var myEmail;
+  var xyz;
+  var abc;
+
+  // Set authorized scope.
+  // var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
+  
+  var SCOPES = ['https://www.googleapis.com/auth/analytics.manage.users.readonly'];
+  
+
+
+  function authorize(event) {
+    // Handles the authorization flow.
+    // `immediate` should be false when invoked from the button click.
+    var useImmdiate = event ? false : true;
+    var authData = {
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      immediate: useImmdiate
+    };
+
+    gapi.auth.authorize(authData, function(response) {
+      var authButton = document.getElementById('auth-button');
+      if (response.error) {
+        authButton.hidden = false;
+      }
+      else {
+        authButton.hidden = true;
+        queryAccounts();
+      }
+    });
+  }
+  
+  function writetxt() {
+  
+  	  	xyz = myArray.toString();
+	// console.log(xyz);
+	
+	// xyz.replace(" ", "");
+	
+	  // console.log(abc);
+
+
+// var myemails = myArray.join(',');
+var myemails = myArray.join(',');
+
+var hiddenElement = document.createElement('a');
+
+hiddenElement.href = 'data:attachment/text,' + encodeURI(myemails);
+hiddenElement.target = '_blank';
+hiddenElement.download = 'myFile.txt';
+hiddenElement.click();
+
+}
+
+// get list of account Ids
+function queryAccounts() {
+  // Load the Google Analytics client library.
+  gapi.client.load('analytics', 'v3').then(function() {
+
+    // Get a list of all Google Analytics accounts for this user
+    gapi.client.analytics.management.accounts.list().then(handleAccounts);
+  });
+}
+
+
+function handleAccounts(response) {
+  // Handles the response from the accounts list method.
+  if (response.result.items && response.result.items.length) {
+    // Get the first Google Analytics account.
+	
+	for(i = 0; i < response.result.items.length; i++)
+	{
+	
+	accountIds.push(response.result.items[i].id);
+	// store account IDs in array
+	nextAccountId = response.result.items[i].id;
+	queryNextAccounts(nextAccountId);
+	
+	// var xyz = newArray.toString();
+	// console.log(xyz);
+	}
+	
+	// duplicates();
+	setTimeout(duplicates, 3000);
+	setTimeout(writetxt, 3500);
+	// writetxt();
+
+	
+  } else {
+    console.log('No accounts found for this user.');
+  }
+}
+
+
+// get user emails from each account
+function queryNextAccounts(accountId) {
+	  console.log(accountId);
+  // Get a list of all the properties for the account.
+  gapi.client.analytics.management.accountUserLinks.list(
+      {'accountId': accountId})
+    .then(handleProperties)
+    .then(null, function(err) {
+      // Log any errors.
+      console.log(err);
+  });
+}
+
+// get email addresses
+function handleProperties(response) {
+  // Handles the response from the webproperties list method.
+  if (response.result.items && response.result.items.length) {
+	
+	 // var accountLinks = results.items;
+	for(i = 0; i < response.result.items.length; i++)
+	{
+	  // myEmail = response.result.items[i].userRef.email;
+	  // myArray.push(myEmail);
+	  // myArray.push(response.result.items[i].userRef.email);
+	  // myArray.push(response.result.items[i].email);
+	  // console.log(response.result.items[i].userRef.email);
+	  // console.log(myEmail);
+	  
+	  myArray.push(response.result.items[i].userRef.email);
+
+    }
+	
+	// xyz = myArray.toString();
+	// console.log(xyz);
+	
+	
+	
+  } else {
+    console.log('No email addresses found for this user.');
+  }
+}
+
+
+function duplicates() {
+
+var compare;
+var compareme;
+
+myArray.sort();
+
+for(i = 0; i < myArray.length; i++)
+{
+
+	compare = myArray[i];
+	compareme = 0;
+
+	for(x = 0; x < myArray.length; x++)
+	{
+		if (myArray[x] == compare)
+		{
+			compareme ++;
+			if(compareme > 1) {
+			// myArray.splice(x,1);
+				myArray[x] = "";
+				}
+			
+			}
+
+	}
+
+}
+
+
+myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
+
+
+}
+
+
+  // Add an event listener to the 'auth-button'.
+  document.getElementById('auth-button').addEventListener('click', authorize);
+</script>
+
+<script src="https://apis.google.com/js/client.js?onload=authorize"></script>
+
+</body>
+</html>
