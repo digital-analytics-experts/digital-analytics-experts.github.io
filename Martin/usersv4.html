@@ -49,13 +49,16 @@
     gapi.auth.authorize(authData, function(response) {
       var authButton = document.getElementById('auth-button');
 	  var usersButton = document.getElementById('users-button');
+	  var deleteButton = document.getElementById('delete-button');
       if (response.error) {
         authButton.hidden = false;
         usersButton.hidden = true;
+		deleteButton.hidden = true;
       }
       else {
         authButton.hidden = true;
 		usersButton.hidden = false;
+		usersButton.hidden = true;
 		document.getElementById("login").textContent = "Welcome, you are logged in";
         // queryAccounts();
       }
