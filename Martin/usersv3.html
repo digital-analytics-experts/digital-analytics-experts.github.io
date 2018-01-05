@@ -46,10 +46,9 @@
 
     gapi.auth.authorize(authData, function(response) {
       var authButton = document.getElementById('auth-button');
-      if (response.error) {
-        authButton.hidden = false;
 	  var usersButton = document.getElementById('users-button');
       if (response.error) {
+        authButton.hidden = false;
         usersButton.hidden = false;
       }
       else {
