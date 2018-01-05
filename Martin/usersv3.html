@@ -67,7 +67,7 @@
   }
   
   
-  function writetxt() {
+  function downloadtxt() {
   
   	  	xyz = myArray.toString();
 	// console.log(xyz);
@@ -119,10 +119,14 @@ function handleAccounts(response) {
 	}
 	
 	// duplicates();
-	setTimeout(duplicates, 3000);
+	// setTimeout(duplicates, 3000);
+	
+	myArray = setTimeout((duplicates(myArray)), 3000);
+	
+	// myArray = duplicates(myArray);
 	setTimeout(validateEmail, 3200);
-	setTimeout(writetxt, 3500);
-	// writetxt();
+	setTimeout(downloadtxt, 3500);
+	// downloadtxt();
 
 	
   } else {
@@ -168,27 +172,29 @@ function handleProperties(response) {
 }
 
 
-function duplicates() {
+function duplicates(arrayName) {
 
 var compare;
 var compareme;
+var tmpArray = [];
+tmpArray = arrayName;
 
-myArray.sort();
+tmpArray.sort();
 
-for(i = 0; i < myArray.length; i++)
+for(i = 0; i < tmpArray.length; i++)
 {
 
-	compare = myArray[i];
+	compare = tmpArray[i];
 	compareme = 0;
 
-	for(x = 0; x < myArray.length; x++)
+	for(x = 0; x < tmpArray.length; x++)
 	{
-		if (myArray[x] == compare)
+		if (tmpArray[x] == compare)
 		{
 			compareme ++;
 			if(compareme > 1) {
 			// myArray.splice(x,1);
-				myArray[x] = "";
+				tmpArray[x] = "";
 				}
 			
 			}
@@ -198,7 +204,9 @@ for(i = 0; i < myArray.length; i++)
 }
 
 
-myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
+tmpArray = tmpArray.filter(function(entry) { return entry.trim() != ''; });
+
+return (tmpArray);
 
  
 }
