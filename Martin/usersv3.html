@@ -123,7 +123,8 @@ function handleAccounts(response) {
 	
 	// myArray = setTimeout((duplicates(myArray)), 3000);
 	
-	myArray = duplicates(myArray);
+	// myArray = duplicates(myArray);
+	setTimeout(function() { duplicates(myArray) }, 3000);
 	setTimeout(validateEmail, 3200);
 	setTimeout(downloadtxt, 3500);
 	// downloadtxt();
