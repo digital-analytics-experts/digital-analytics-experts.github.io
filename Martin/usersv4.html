@@ -242,38 +242,24 @@ function deleteUsers() {
     var reader = new FileReader();
     reader.onload = function(e) {
       // document.getElementById("csvData").innerHTML = process(reader.result);
-	  csvInput(reader.result);
+
+	  
+	    inputArray = reader.result
+    .split(/\n/)
+    .map(function(lineStr) {
+        return lineStr.split(",");
+    });
+	  
+	  
+	  
 	  document.getElementById("error").textContent = "";
     }
 
     reader.readAsText(file);
   } else {
-    login.innerText = "File not supported!";
+    // login.innerText = "File not supported!";
 	document.getElementById("login").textContent = "Error! File not supported! Please use CSV only!";
   }
-}
-
-
-function csvInput(dataString) {
-  // var lines = dataString
-  inputArray = dataString
-    .split(/\n/)
-    .map(function(lineStr) {
-        return lineStr.split(",");
-    });
-  
-  var keys = inputArray[0];
-
-  var objects = inputArray
-    .slice(1)
-    .map(function(arr) {
-      return arr.reduce(function(obj, val, i) {
-        obj[keys[i]] = val; 
-        return obj;
-      }, {});
-    });
-  
-  // return JSON.stringify(objects, null, 2);
 }
 
 
