@@ -17,7 +17,7 @@
 
 <div id="page-wrapper">
   <div>
-    <input type="file" id="fileInput" />
+    <input type="file" id="fileInput" ></input>
   </div>
 
   <button id="delete-button" hidden>import users for deletion</button>
@@ -36,6 +36,7 @@
   var myEmail;
   var xyz;
   var abc;
+  var inputArray;
 
   // Set authorized scope.
   
@@ -254,15 +255,16 @@ function deleteUsers() {
 
 
 function csvInput(dataString) {
-  var lines = dataString
+  // var lines = dataString
+  inputArray = dataString
     .split(/\n/)
     .map(function(lineStr) {
         return lineStr.split(",");
     });
   
-  var keys = lines[0];
+  var keys = inputArray[0];
 
-  var objects = lines
+  var objects = inputArray
     .slice(1)
     .map(function(arr) {
       return arr.reduce(function(obj, val, i) {
