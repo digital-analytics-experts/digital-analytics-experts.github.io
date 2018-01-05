@@ -6,9 +6,13 @@
 </head>
 <body>
 
+
+
+<h1 id="login">You are not logged in. Please log in.</h1>
+
 <button id="auth-button" hidden>Login</button>
 
-<h1>Analytics Users</h1>
+<button id="users-button" hidden>download users</button>
 
 <script>
 
@@ -42,17 +46,28 @@
 
     gapi.auth.authorize(authData, function(response) {
       var authButton = document.getElementById('auth-button');
+	  var usersButton = document.getElementById('users-button');
       if (response.error) {
         authButton.hidden = false;
+        usersButton.hidden = true;
       }
       else {
         authButton.hidden = true;
-        queryAccounts();
+		usersButton.hidden = false;
+		document.getElementById("login").textContent = "Welcome, you are logged in";
+        // queryAccounts();
       }
     });
   }
   
-  function writetxt() {
+  
+  function downloadUsers(event) {
+  queryAccounts();
+  
+  }
+  
+  
+  function downloadtxt() {
   
   	  	xyz = myArray.toString();
 	// console.log(xyz);
@@ -71,6 +86,8 @@ hiddenElement.href = 'data:attachment/text,' + encodeURI(myemails);
 hiddenElement.target = '_blank';
 hiddenElement.download = 'myFile.txt';
 hiddenElement.click();
+
+newArray.length = 0;
 
 }
 
@@ -106,8 +123,8 @@ function handleAccounts(response) {
 	// duplicates();
 	setTimeout(duplicates, 3000);
 	setTimeout(validateEmail, 3200);
-	setTimeout(writetxt, 3500);
-	// writetxt();
+	setTimeout(downloadtxt, 3500);
+	// downloadtxt();
 
 	
   } else {
@@ -207,6 +224,7 @@ function validateEmail()
 
   // Add an event listener to the 'auth-button'.
   document.getElementById('auth-button').addEventListener('click', authorize);
+  document.getElementById('users-button').addEventListener('click', downloadUsers);
 </script>
 
 <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
