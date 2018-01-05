@@ -119,11 +119,7 @@ function handleAccounts(response) {
 	}
 	
 	// duplicates();
-	
-	// myArray = duplicates(myArray);
-	// myArray = setTimeout(function() { duplicates(myArray) }, 3000);
-	
-	myArray = duplicates(myArray);
+	setTimeout(duplicates, 3000);
 	setTimeout(validateEmail, 3200);
 	setTimeout(downloadtxt, 3500);
 	// downloadtxt();
@@ -172,33 +168,27 @@ function handleProperties(response) {
 }
 
 
-function duplicates(arrayName) {
-
-  setTimeout(function () {
-    
-
+function duplicates() {
 
 var compare;
 var compareme;
-var tmpArray = [];
-tmpArray = arrayName;
 
-tmpArray.sort();
+myArray.sort();
 
-for(i = 0; i < tmpArray.length; i++)
+for(i = 0; i < myArray.length; i++)
 {
 
-	compare = tmpArray[i];
+	compare = myArray[i];
 	compareme = 0;
 
-	for(x = 0; x < tmpArray.length; x++)
+	for(x = 0; x < myArray.length; x++)
 	{
-		if (tmpArray[x] == compare)
+		if (myArray[x] == compare)
 		{
 			compareme ++;
 			if(compareme > 1) {
 			// myArray.splice(x,1);
-				tmpArray[x] = "";
+				myArray[x] = "";
 				}
 			
 			}
@@ -208,12 +198,7 @@ for(i = 0; i < tmpArray.length; i++)
 }
 
 
-tmpArray = tmpArray.filter(function(entry) { return entry.trim() != ''; });
-
-return (tmpArray);
-
-
-}, 3000);
+myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 
  
 }
