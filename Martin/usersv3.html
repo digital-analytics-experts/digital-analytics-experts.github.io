@@ -49,11 +49,11 @@
 	  var usersButton = document.getElementById('users-button');
       if (response.error) {
         authButton.hidden = false;
-        usersButton.hidden = false;
+        usersButton.hidden = true;
       }
       else {
         authButton.hidden = true;
-		usersButton.hidden = true;
+		usersButton.hidden = false;
 		document.getElementById("login").textContent = "Welcome, you are logged in";
         // queryAccounts();
       }
