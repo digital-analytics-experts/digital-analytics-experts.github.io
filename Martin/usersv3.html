@@ -119,12 +119,11 @@ function handleAccounts(response) {
 	}
 	
 	// duplicates();
-	// setTimeout(duplicates, 3000);
-	
-	// myArray = setTimeout((duplicates(myArray)), 3000);
 	
 	// myArray = duplicates(myArray);
-	myArray = setTimeout(function() { duplicates(myArray) }, 3000);
+	// myArray = setTimeout(function() { duplicates(myArray) }, 3000);
+	
+	myArray = duplicates(myArray);
 	setTimeout(validateEmail, 3200);
 	setTimeout(downloadtxt, 3500);
 	// downloadtxt();
@@ -175,6 +174,10 @@ function handleProperties(response) {
 
 function duplicates(arrayName) {
 
+  setTimeout(function () {
+    
+
+
 var compare;
 var compareme;
 var tmpArray = [];
@@ -208,6 +211,9 @@ for(i = 0; i < tmpArray.length; i++)
 tmpArray = tmpArray.filter(function(entry) { return entry.trim() != ''; });
 
 return (tmpArray);
+
+
+}, 3000);
 
  
 }
