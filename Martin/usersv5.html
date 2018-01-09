@@ -238,11 +238,9 @@ function validateEmail()
 }
 
 function deleteUsers(event) {
-console.log("function start");
-  // var openFile = function(event) {
-  
-  
-	var openFile = event;
+
+
+
   
     var input = event.target;
 
@@ -250,14 +248,18 @@ console.log("function start");
     reader.onload = function(){
       var text = reader.result;
       console.log(reader.result.substring(0, 200));
-    };
-    // reader.readAsText(input.files[0]);
-	// console.log(text);
-	// console.log(input);
+
+    reader.readAsText(input.files[0]);
+
 	
   console.log("openFile" + openFile);
   console.log("input" + input);
   console.log("text" + text);
+  }
+  
+  
+
+
   }
 
 
