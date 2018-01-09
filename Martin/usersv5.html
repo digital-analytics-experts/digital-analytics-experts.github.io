@@ -24,7 +24,6 @@
 </div> -->
 
 <input type='file' id="delete-button" accept='text/plain' hidden><br>
-<img id='output'>
 
 <script>
 
@@ -237,36 +236,22 @@ function validateEmail()
 
 }
 
-function deleteUsers(event) {
-
-
-
-  
+function deleteUsers(event){
     var input = event.target;
 
     var reader = new FileReader();
     reader.onload = function(){
       var text = reader.result;
       console.log(reader.result.substring(0, 200));
-
+    };
     reader.readAsText(input.files[0]);
-
-	
-  console.log("openFile" + openFile);
-  console.log("input" + input);
-  console.log("text" + text);
-  }
-  
-  
-
-
   }
 
 
   // Add an event listener to the 'auth-button'.
   document.getElementById('auth-button').addEventListener('click', authorize);
   document.getElementById('users-button').addEventListener('click', downloadUsers);
-  document.getElementById('delete-button').addEventListener('click', deleteUsers);
+  document.getElementById('delete-button').addEventListener('change', deleteUsers);
 </script>
 
 <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
