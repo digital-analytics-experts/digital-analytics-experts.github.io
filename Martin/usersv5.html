@@ -38,7 +38,8 @@
   var myEmail;
   var xyz;
   var abc;
-  var inputArray;
+  var fileArray;
+  var fileInput;
 
   // Set authorized scope.
   
@@ -242,9 +243,11 @@ function deleteUsers(event){
     var reader = new FileReader();
     reader.onload = function(){
       // var text = reader.result;
-	  inputArray = reader.result;
+	  fileInput = reader.result;
+	  
+	  fileArray = fileInput.split(" ");
       // console.log(reader.result.substring(0, 200));
-	  console.log(inputArray[2]);
+	  console.log(fileInput[2]);
     };
     reader.readAsText(input.files[0]);
   }
