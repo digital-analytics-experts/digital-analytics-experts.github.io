@@ -153,13 +153,14 @@
 	</script>
 			
 <script>
+var table_html;
 function validateForm() {
     var x = document.getElementById('sproducts').value;
     if (x == "") {
         alert("Field cannot be empty");
         return false;
     }	else	{
-		var table_html = explode_product_string.functions.build_table(x, prod_attr);
+		table_html = explode_product_string.functions.build_table(x, prod_attr);
 		document.getElementById('result').innerHTML = "";
 		document.getElementById('result').appendChild(table_html);
 	}
