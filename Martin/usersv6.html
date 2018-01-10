@@ -87,7 +87,7 @@
   
   
   function downloadUsers(event) {
-  request = downloadEmails;
+  request = "downloadUsers";
   queryAccounts();
   
   	// setTimeout(duplicates, 3000);
@@ -148,7 +148,7 @@ function handleAccounts(response) {
 	// store account IDs in array
 	nextAccountId = response.result.items[i].id;
 	
-	if(request == "downloadEmails")	
+	if(request == "downloadUsers")	
 	queryNextAccounts(nextAccountId);
 	
 	// var xyz = newArray.toString();
