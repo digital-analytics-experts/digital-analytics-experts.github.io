@@ -45,6 +45,7 @@
   var abc;
   var fileArray;
   var fileInput;
+  var response;
 
   // Set authorized scope.
   
@@ -131,7 +132,7 @@ function queryAccounts() {
 
     // Get a list of all Google Analytics accounts for this user
     // gapi.client.analytics.management.accounts.list().then(handleAccounts);
-	gapi.client.analytics.management.accounts.list();
+	response = gapi.client.analytics.management.accounts.list();
   });
 }
 
