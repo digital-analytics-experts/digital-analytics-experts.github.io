@@ -87,13 +87,14 @@
   
   function downloadUsers(event) {
   queryAccounts();
+  handleAccounts();
   
   	// setTimeout(duplicates, 3000);
 	// setTimeout(validateEmail, 3200);
 	// setTimeout(downloadtxt, 3500);
 	
 	duplicates();
-	validateEmailil();
+	validateEmail();
 	downloadtxt();
   
   }
@@ -129,7 +130,8 @@ function queryAccounts() {
   gapi.client.load('analytics', 'v3').then(function() {
 
     // Get a list of all Google Analytics accounts for this user
-    gapi.client.analytics.management.accounts.list().then(handleAccounts);
+    // gapi.client.analytics.management.accounts.list().then(handleAccounts);
+	gapi.client.analytics.management.accounts.list();
   });
 }
 
