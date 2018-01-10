@@ -45,7 +45,7 @@
   var abc;
   var fileArray;
   var fileInput;
-  var response;
+  var request;
 
   // Set authorized scope.
   
@@ -87,9 +87,8 @@
   
   
   function downloadUsers(event) {
+  request = downloadEmails;
   queryAccounts();
-  console.log(response);
-  /* handleAccounts(response);
   
   	// setTimeout(duplicates, 3000);
 	// setTimeout(validateEmail, 3200);
@@ -97,7 +96,7 @@
 	
 	duplicates();
 	validateEmail();
-	downloadtxt(); */
+	downloadtxt();
   
   }
   
@@ -132,8 +131,7 @@ function queryAccounts() {
   gapi.client.load('analytics', 'v3').then(function() {
 
     // Get a list of all Google Analytics accounts for this user
-    // gapi.client.analytics.management.accounts.list().then(handleAccounts);
-	response = gapi.client.analytics.management.accounts.list();
+    gapi.client.analytics.management.accounts.list().then(handleAccounts);
   });
 }
 
@@ -150,6 +148,7 @@ function handleAccounts(response) {
 	// store account IDs in array
 	nextAccountId = response.result.items[i].id;
 	
+	if(request == "downloadEmails")	
 	queryNextAccounts(nextAccountId);
 	
 	// var xyz = newArray.toString();
