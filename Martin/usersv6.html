@@ -187,7 +187,7 @@ function handleProperties(response) {
 	for(i = 0; i < response.result.items.length; i++)
 	{
 	  
-	  myArray.push(response.result.items[i].userRef.email);
+	  // myArray.push(response.result.items[i].userRef.email);
 	  
 	  // if( )// if delete users
 		// {
@@ -202,7 +202,7 @@ function handleProperties(response) {
 				// idArray.push(response.result.items[i].userRef.email);
 				
 				idArray.push([nextAccountId,response.result.items[i].userRef.email]);
-				console.log(fileArray[a]);
+				// console.log(fileArray[a]);
 			
 			
 			}
@@ -319,8 +319,11 @@ function deleteUsers(event){
 	
 	if(fileArray && fileArray != undefined)
 	{
+		console.log("dat from file: ",fileArray.toString());
+	
+	
 		retrieveUsers()
-		console.log(idArray.toString());
+		// console.log(idArray.toString());
 		
 		}
   }
