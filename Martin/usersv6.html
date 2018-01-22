@@ -198,12 +198,12 @@ function handleProperties(response) {
 		  
 		  // console.log(fileArray[a]);
 		  
-			if (fileArray[a] == response.result.items[i].userRef.email)
+			if (fileArray[a] === response.result.items[i].userRef.email)
 			{
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
 				
-				// idArray.push([nextAccountId,response.result.items[i].userRef.email]);
+				idArray.push([nextAccountId,response.result.items[i].userRef.email]);
 				console.log("match found!");
 			
 			
