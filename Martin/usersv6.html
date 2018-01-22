@@ -208,7 +208,7 @@ function handleProperties(response) {
 				// idArray.push(response.result.items[i].userRef.email);
 				
 				// idArray.push([nextAccountId,response.result.items[i].userRef.email]);
-				idArray.push(items[i]+" "+fileValue);
+				idArray.push(entity.accountRef.id+" "+fileValue);
 				console.log("match found!");
 			
 			
@@ -327,7 +327,7 @@ function deleteUsers(event){
 	  
 	  retrieveUsers()
 	  
-	  	  // console.log(idArray[0]);
+	  	  console.log(idArray[0]);
 	  
 	  
     };
