@@ -193,12 +193,16 @@ function handleProperties(response) {
 		// {
 		  for(a = 0; a < fileArray.length; a++)
 		  {
+		  
+		  console.log(fileArray[a]);
+		  
 			if (fileArray[a] == response.result.items[i].userRef.email)
 			{
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
 				
 				idArray.push([nextAccountId,response.result.items[i].userRef.email]);
+				console.log(fileArray[a]);
 			
 			
 			}
