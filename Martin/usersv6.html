@@ -196,9 +196,13 @@ function handleProperties(response) {
 		  
 		  // console.log(response.result.items[i].userRef.email);
 		  
-		  console.log(fileArray[a]);
+		  // console.log(fileArray[a]);
 		  
-			if (fileArray[a] === response.result.items[i].userRef.email)
+		  var fileValue = fileArray[a];
+		  var realValue = response.result.items[i].userRef.email
+		  
+			// if (fileArray[a] === response.result.items[i].userRef.email)
+			if (realValue.includes(fileValue))
 			{
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
