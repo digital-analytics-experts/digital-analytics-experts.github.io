@@ -207,7 +207,8 @@ function handleProperties(response) {
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
 				
-				idArray.push([nextAccountId,response.result.items[i].userRef.email]);
+				// idArray.push([nextAccountId,response.result.items[i].userRef.email]);
+				idArray.push(items[i]+" "+fileValue);
 				console.log("match found!");
 			
 			
@@ -323,7 +324,10 @@ function deleteUsers(event){
 	  
 	  
 	  
+	  
 	  retrieveUsers()
+	  
+	  	  console.log(idArray.to String());
 	  
 	  
     };
