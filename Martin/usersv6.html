@@ -320,6 +320,9 @@ function duplicates() {
 var compare;
 var compareme;
 
+if(request == "deleteUsers")
+	myArray = idArray;
+
 myArray.sort();
 
 for(i = 0; i < myArray.length; i++)
@@ -367,6 +370,7 @@ function validateEmail()
 }
 
 function deleteUsers(event){
+	request = "deleteUsers";
     var input = event.target;
 
     var reader = new FileReader();
@@ -383,7 +387,8 @@ function deleteUsers(event){
 	  
 	  retrieveUsers()
 	  
-	  setTimeout(searchEmails, 3000);
+	  setTimeout(duplicates, 3000);
+	  setTimeout(searchEmails, 3200);
 	  
 	  	  // console.log(idArray[0]);
 	  
