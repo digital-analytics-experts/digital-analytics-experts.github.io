@@ -199,18 +199,18 @@ function handleProperties(response) {
 		  // console.log(fileArray[a]);
 		  
 		  var fileValue = fileArray[a];
-		  var realValue = response.result.items[i].userRef.email
-		  var realAccount = response.result.items[i].entity.accountRef.id 
-		  var space = " ";
+		  var realValue = response.result.items[i].userRef.email;
+		  var realAccount = response.result.items[i].entity.accountRef.id;
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
 			if (realValue.includes(fileValue))
 			{
 				// put user id into array
-				// idArray.push(response.result.items[i].userRef.email);
+				idArray.push(fileValue);
+				idArray.push(realAccount);
 				
-				console.log("match found!", response.result.items[i].entity.accountRef.id);
-				// console.log(idArray);
+				// console.log("match found!", response.result.items[i].entity.accountRef.id);
+				console.log(idArray);
 			
 			
 			}
