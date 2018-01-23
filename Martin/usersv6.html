@@ -91,7 +91,8 @@
   request = "downloadUsers";
   queryAccounts();
   
-  	setTimeout(duplicates, 3000);
+  	// setTimeout(duplicates, 3000);
+	setTimeout(function() {duplicates(myArray)}, 3000); 
 	setTimeout(validateEmail, 3200);
 	setTimeout(downloadtxt, 3500);
   
@@ -311,7 +312,7 @@ function removeUsers() {
 }
 
 
-function duplicates() {
+function duplicates(localArray) {
 
 var compare;
 var compareme;
