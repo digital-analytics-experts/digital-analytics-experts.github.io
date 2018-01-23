@@ -196,7 +196,7 @@ function handleProperties(response) {
 		  
 		  // console.log(response.result.items[i].userRef.email);
 		  
-		  // console.log(fileArray[a]);
+		  console.log("handleProperties fileArray: ", fileArray[5]);
 		  
 		  var fileValue = fileArray[a];
 		  var realValue = response.result.items[i].userRef.email;
@@ -206,11 +206,11 @@ function handleProperties(response) {
 			if (realValue.includes(fileValue))
 			{
 				// put user id into array
-				idArray.push(realValue);
-				idArray.push(realAccount);
+				// idArray.push(realValue);
+				// idArray.push(realAccount);
 				
 				// console.log("match found!", response.result.items[i].entity.accountRef.id);
-				console.log(idArray);
+				// console.log(idArray);
 			
 			
 			}
@@ -321,7 +321,7 @@ function deleteUsers(event){
 	  
 	  fileArray = fileInput.split("\n");
       // console.log(reader.result.substring(0, 200));
-	  console.log(fileArray[2]);
+	  console.log(fileArray[5]);
 	  
 	  
 	  
