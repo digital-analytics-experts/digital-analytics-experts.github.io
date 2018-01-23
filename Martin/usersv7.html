@@ -198,12 +198,16 @@ var emailCheck = [];
 	console.log("emailcheck[1] = ", emailCheck[1]); */
 	
 		for(c = 0; c < fileArray.length; c++) {
+		var file = fileArray[c];
+		var check = emailCheck[1];
 		fileArray[c].trim();
-		console.log("fileArray[c] = ", fileArray[c]);
+		// console.log("fileArray[c] = ", fileArray[c]);
 		
-			if(emailCheck[1] == fileArray[c]) {
+			// if(emailCheck[1] == fileArray[c]) {
+			if(check == file) {
 				c = fileArray.length + 1;
 				console.log("found match");
+				
 				
 				}
 			
