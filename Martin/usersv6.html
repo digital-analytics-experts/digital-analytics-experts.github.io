@@ -207,9 +207,9 @@ function handleProperties(response) {
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
 				
-				// idArray.push([nextAccountId,response.result.items[i].userRef.email]);
-				// idArray.push(entity.accountRef.id+" "+fileValue);
-				console.log("match found!", response.result.items[i].entity.accountRef.id);
+				idArray.push(response.result.items[i].entity.accountRef.id + " " + fileValue);
+				// console.log("match found!", response.result.items[i].entity.accountRef.id);
+				console.log(idArray);
 			
 			
 			}
