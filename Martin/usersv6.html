@@ -193,10 +193,8 @@ for(b = 0; b < idArray.length; b++) {
 	if(emailCheck[1] == emailCheck[2]) {
 		console.log("match found: ", emailCheck[1] + emailCheck[2]);
 		}
-
-
-
-
+	else
+		emailCheck.length = 0;
 	}
 
 
@@ -205,7 +203,7 @@ for(b = 0; b < idArray.length; b++) {
 
 // if match not found then remove from array
 
-emailCheck.length = 0;
+
 
 }
 
