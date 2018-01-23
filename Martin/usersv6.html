@@ -209,10 +209,11 @@ function handleProperties(response) {
 		  
 		  // console.log("fileArray A: ", fileValue, "account ID: ", realAccount, "real email: ", realValue);
 		  
-		  setTimeout(callme, 3000);
+		  idArray = (realaccount + " " + fileValue + " " + realValue)
+		  console.log(idArray.toString());
 		  
-		  if(fileArray[a] == response.result.items[i].userRef.email)
-		  console.log("match found: ",realAccount);
+		  // if(fileArray[a] == response.result.items[i].userRef.email)
+		  // console.log("match found: ",realAccount);
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
 			/* if (realValue.includes(fileValue))
