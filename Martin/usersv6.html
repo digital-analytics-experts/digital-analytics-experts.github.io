@@ -317,14 +317,14 @@ var compare;
 var compareme;
 var localArray;
 
-if (request=="deleteUsers")
+if (request == "deleteUsers")
 	localArray = idArray;
 else if (request == "downloadUsers")
 	localArray = myArray;
 
 localArray.sort();
 
-for(i = 0; i < myArray.length; i++)
+for(i = 0; i < localArray.length; i++)
 {
 
 	compare = localArray[i];
@@ -346,10 +346,12 @@ for(i = 0; i < myArray.length; i++)
 
 }
 
-if (request == "downloadUsers")
+if (request == "deleteUsers")
 idArray = idArray.filter(function(entry) { return entry.trim() != ''; });
 else if (request == "downloadUsers")
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
+
+localArray.length = 0;
  
 }
 
