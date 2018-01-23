@@ -201,9 +201,9 @@ var emailCheck = [];
 		fileArray[c].trim();
 		// console.log("fileArray[c] = ", fileArray[c]);
 		
-			if(fileArray[c].includes(emailCheck[1]) && fileArray[c] != undefined) {
+			if(fileArray[c].includes(emailCheck[1]) && fileArray[c] != undefined && emailCheck[1] != undefined) {
+				console.log("found match",idArray[b], fileArray[c], emailCheck[1]);
 				c = fileArray.length + 1;
-				console.log("found match",fileArray[c], emailCheck[1]);
 				
 				
 				}
