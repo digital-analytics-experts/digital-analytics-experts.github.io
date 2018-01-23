@@ -200,6 +200,8 @@ function handleProperties(response) {
 		  
 		  var fileValue = fileArray[a];
 		  var realValue = response.result.items[i].userRef.email
+		  var realAccount = response.result.items[i].entity.accountRef.id 
+		  var space = " ";
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
 			if (realValue.includes(fileValue))
@@ -207,7 +209,7 @@ function handleProperties(response) {
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
 				
-				idArray.push(response.result.items[i].entity.accountRef.id + " " + fileValue);
+				idArray.push(realAccount.concat(space,fileValue));
 				// console.log("match found!", response.result.items[i].entity.accountRef.id);
 				console.log(idArray);
 			
