@@ -209,7 +209,9 @@ function handleProperties(response) {
 				// put user id into array
 				// idArray.push(response.result.items[i].userRef.email);
 				
-				idArray.push(realAccount.concat(space,fileValue));
+				realAccount = realAccount + " " + fileValue;
+				
+				idArray.push(realAccount);
 				// console.log("match found!", response.result.items[i].entity.accountRef.id);
 				console.log(idArray);
 			
