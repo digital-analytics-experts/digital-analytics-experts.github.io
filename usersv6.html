@@ -186,7 +186,7 @@ var emailCheck = [];
 
 // split each variable in array
 
-for(b = 0; b < idArray.length; b++) {
+/* for(b = 0; b < idArray.length; b++) {
 
 	emailCheck = idArray[b].split(" ");
 	
@@ -200,9 +200,9 @@ for(b = 0; b < idArray.length; b++) {
 	console.log("emailcheck[1] = ", emailCheck[1]);
 	console.log("emailcheck[2] = ", emailCheck[2]); */
 	
-	if(emailCheck[1] == emailCheck[2]) {
-		console.log("match found: ", emailCheck[1]);
-		}
+	/* if(emailCheck[1] == emailCheck[2]) {
+		// console.log("match found: ", emailCheck[1]);
+		} */
 	/* else
 		emailCheck.length = 0;
 	} */
@@ -213,9 +213,11 @@ for(b = 0; b < idArray.length; b++) {
 
 // if match not found then remove from array
 
-emailCheck.length = 0;
-}
+// emailCheck.length = 0;
 
+
+// }
+console.log(idArray.toString());
 }
 
 // get items from account
@@ -243,7 +245,7 @@ function handleProperties(response) {
 		  
 		  // console.log("fileArray A: ", fileValue, "account ID: ", realAccount, "real email: ", realValue);
 		  
-		  idArray.push(realAccount + " " + fileValue + " " + realValue)
+		  idArray.push(realAccount + " " + realValue)
 		  // console.log(idArray.toString());
 		  
 		  // if(fileArray[a] == response.result.items[i].userRef.email)
