@@ -203,7 +203,7 @@ function handleProperties(response) {
 		  
 		  // console.log("fileArray A: ", fileValue, "account ID: ", realAccount, "real email: ", realValue);
 		  
-		  if(fileValue == realValue)
+		  if(fileArray[a] == response.result.items[i].userRef.email)
 		  console.log("match found: ",realAccount);
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
