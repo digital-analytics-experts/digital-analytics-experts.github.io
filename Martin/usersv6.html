@@ -201,7 +201,7 @@ function handleProperties(response) {
 		  var realValue = response.result.items[i].userRef.email;
 		  var realAccount = response.result.items[i].entity.accountRef.id;
 		  
-		  console.log("fileArray A: ", fileArray[a], "account ID: ", realAccount);
+		  console.log("fileArray A: ", fileArray[a], "account ID: ", realAccount, "real email: ", realValue);
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
 			if (realValue.includes(fileValue))
