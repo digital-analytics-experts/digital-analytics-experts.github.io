@@ -91,8 +91,7 @@
   request = "downloadUsers";
   queryAccounts();
   
-  	// setTimeout(duplicates, 3000);
-	setTimeout(function() {duplicates(myArray)}, 3000); 
+  	setTimeout(duplicates, 3000);
 	setTimeout(validateEmail, 3200);
 	setTimeout(downloadtxt, 3500);
   
@@ -316,23 +315,29 @@ function duplicates(localArray) {
 
 var compare;
 var compareme;
+var localArray;
 
-myArray.sort();
+if (request=="deleteUsers")
+	localArray = idArray;
+else if (request == "downloadUsers")
+	localArray = myArray;
+
+localArray.sort();
 
 for(i = 0; i < myArray.length; i++)
 {
 
-	compare = myArray[i];
+	compare = localArray[i];
 	compareme = 0;
 
-	for(x = 0; x < myArray.length; x++)
+	for(x = 0; x < localArray.length; x++)
 	{
-		if (myArray[x] == compare)
+		if (localArray[x] == compare)
 		{
 			compareme ++;
 			if(compareme > 1) {
 			// myArray.splice(x,1);
-				myArray[x] = "";
+				localArray[x] = "";
 				}
 			
 			}
@@ -341,9 +346,10 @@ for(i = 0; i < myArray.length; i++)
 
 }
 
-
+if (request == "downloadUsers")
+idArray = idArray.filter(function(entry) { return entry.trim() != ''; });
+else if (request == "downloadUsers")
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
-
  
 }
 
@@ -364,6 +370,7 @@ function validateEmail()
 }
 
 function deleteUsers(event){
+	request = "deleteUsers";
     var input = event.target;
 
     var reader = new FileReader();
