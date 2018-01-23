@@ -230,11 +230,11 @@ function handleProperties(response) {
 	{
 	  
 	  myArray.push(response.result.items[i].userRef.email);
-	  
+	  idArray.push(realAccount + " " + realValue
 	  
 	  // if( )// if delete users
 		// {
-		  for(a = 0; a < fileArray.length; a++)
+		  /* for(a = 0; a < fileArray.length; a++)
 		  {
 		  
 		  // console.log("handleProperties fileArray: ", fileArray[5]);
@@ -266,7 +266,7 @@ function handleProperties(response) {
 			
 			} */
 		  
-		  }
+		  } */
 		// }
 	  
 	  
@@ -315,29 +315,23 @@ function duplicates() {
 
 var compare;
 var compareme;
-var localArray;
 
-if (request == "deleteUsers")
-	localArray = idArray;
-else if (request == "downloadUsers")
-	localArray = myArray;
+myArray.sort();
 
-localArray.sort();
-
-for(i = 0; i < localArray.length; i++)
+for(i = 0; i < myArray.length; i++)
 {
 
-	compare = localArray[i];
+	compare = myArray[i];
 	compareme = 0;
 
-	for(x = 0; x < localArray.length; x++)
+	for(x = 0; x < myArray.length; x++)
 	{
-		if (localArray[x] == compare)
+		if (myArray[x] == compare)
 		{
 			compareme ++;
 			if(compareme > 1) {
 			// myArray.splice(x,1);
-				localArray[x] = "";
+				myArray[x] = "";
 				}
 			
 			}
@@ -346,12 +340,9 @@ for(i = 0; i < localArray.length; i++)
 
 }
 
-if (request == "deleteUsers")
-idArray = idArray.filter(function(entry) { return entry.trim() != ''; });
-else if (request == "downloadUsers")
+
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 
-localArray.length = 0;
  
 }
 
@@ -372,7 +363,6 @@ function validateEmail()
 }
 
 function deleteUsers(event){
-	request = "deleteUsers";
     var input = event.target;
 
     var reader = new FileReader();
