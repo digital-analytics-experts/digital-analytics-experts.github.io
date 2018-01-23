@@ -191,6 +191,7 @@ var emailCheck = [];
 	emailCheck = idArray[b].split(" ");
 	
 	emailCheck[0].trim();
+	if(emailCheck[1])
 	emailCheck[1].trim();
 	
 		for(c = 0; c < fileArray.length; c++) {
@@ -212,7 +213,7 @@ var emailCheck = [];
 		emailCheck.length = 0;
 	}
 	
-	console.log(idArray.toString());
+	// console.log(idArray.toString());
 	
 	// emailCheck = emailCheck.filter(function(entry) { return entry.trim() != ' '; });
 	
