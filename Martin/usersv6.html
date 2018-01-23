@@ -190,14 +190,14 @@ for(b = 0; b < idArray.length; b++) {
 
 	emailCheck = idArray[b].split(" ");
 	
-	console.log("emailcheck[0] = ", emailCheck[0]);
+	/* console.log("emailcheck[0] = ", emailCheck[0]);
 	console.log("emailcheck[1] = ", emailCheck[1]);
-	console.log("emailcheck[2] = ", emailCheck[2]);
+	console.log("emailcheck[2] = ", emailCheck[2]); */
 	
-	/* if(emailCheck[1] == emailCheck[2]) {
-		console.log("match found: ", emailCheck[1] + emailCheck[2]);
+	if(emailCheck[1] == emailCheck[2]) {
+		console.log("match found: ", emailCheck[1], emailCheck[2]);
 		}
-	else
+	/* else
 		emailCheck.length = 0;
 	} */
 
@@ -208,8 +208,6 @@ for(b = 0; b < idArray.length; b++) {
 // if match not found then remove from array
 
 emailCheck.length = 0;
-
-console.log("fileArray length: ",fileArray.length);
 }
 
 }
