@@ -201,10 +201,13 @@ function handleProperties(response) {
 		  var realValue = response.result.items[i].userRef.email;
 		  var realAccount = response.result.items[i].entity.accountRef.id;
 		  
-		  console.log("fileArray A: ", fileArray[a], "account ID: ", realAccount, "real email: ", realValue);
+		  // console.log("fileArray A: ", fileArray[a], "account ID: ", realAccount, "real email: ", realValue);
+		  
+		  if(fileValue == realValue)
+		  console.log(realAccount);
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
-			if (realValue.includes(fileValue))
+			/* if (realValue.includes(fileValue))
 			{
 				// put user id into array
 				// idArray.push(realValue);
@@ -216,7 +219,7 @@ function handleProperties(response) {
 				// console.log("handleProperties fileArray[a]: ", fileArray[a], "fileValue: ", fileValue, "realValue :", realValue);
 			
 			
-			}
+			} */
 		  
 		  }
 		// }
