@@ -201,7 +201,7 @@ var emailCheck = [];
 		fileArray[c].trim();
 		// console.log("fileArray[c] = ", fileArray[c]);
 		
-			if(emailCheck[1].include(fileArray[c])) {
+			if(emailCheck[1].includes(fileArray[c])) {
 				c = fileArray.length + 1;
 				console.log("found match",fileArray[c], emailCheck[1]);
 				
