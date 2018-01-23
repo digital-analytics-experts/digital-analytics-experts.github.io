@@ -178,6 +178,12 @@ function queryNextAccounts(accountId) {
   });
 }
 
+function callme(){
+
+console.log("function called");
+
+}
+
 // get items from account
 function handleProperties(response) {
   // Handles the response from the webproperties list method.
@@ -202,6 +208,8 @@ function handleProperties(response) {
 		  var realAccount = response.result.items[i].entity.accountRef.id;
 		  
 		  // console.log("fileArray A: ", fileValue, "account ID: ", realAccount, "real email: ", realValue);
+		  
+		  setTimeout(callme, 3000);
 		  
 		  if(fileArray[a] == response.result.items[i].userRef.email)
 		  console.log("match found: ",realAccount);
