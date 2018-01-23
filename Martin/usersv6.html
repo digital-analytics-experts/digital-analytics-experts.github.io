@@ -209,8 +209,8 @@ function handleProperties(response) {
 		  
 		  // console.log("fileArray A: ", fileValue, "account ID: ", realAccount, "real email: ", realValue);
 		  
-		  idArray = (realAccount + " " + fileValue + " " + realValue)
-		  console.log(idArray.toString());
+		  idArray.push(realAccount + " " + fileValue + " " + realValue)
+		  // console.log(idArray.toString());
 		  
 		  // if(fileArray[a] == response.result.items[i].userRef.email)
 		  // console.log("match found: ",realAccount);
@@ -343,7 +343,9 @@ function deleteUsers(event){
 	  
 	  retrieveUsers()
 	  
-	  	  console.log(idArray[0]);
+	  console.log(idArray.toString());
+	  
+	  	  // console.log(idArray[0]);
 	  
 	  
     };
