@@ -195,15 +195,13 @@ function handleProperties(response) {
 		  for(a = 0; a < fileArray.length; a++)
 		  {
 		  
-		  // console.log("fileArray A: ", fileArray[a]);
-		  
 		  // console.log("handleProperties fileArray: ", fileArray[5]);
 		  
 		  var fileValue = fileArray[a];
 		  var realValue = response.result.items[i].userRef.email;
 		  var realAccount = response.result.items[i].entity.accountRef.id;
 		  
-		  setTimeout(validateEmail, 1000);
+		  console.log("fileArray A: ", fileArray[a], "account ID: ", realAccount);
 		  
 			// if (fileArray[a] === response.result.items[i].userRef.email)
 			if (realValue.includes(fileValue))
@@ -215,7 +213,7 @@ function handleProperties(response) {
 				// console.log("match found!", response.result.items[i].entity.accountRef.id);
 				// console.log(idArray);
 				
-				console.log("handleProperties fileArray[a]: ", fileArray[a], "fileValue: ", fileValue, "realValue :", realValue);
+				// console.log("handleProperties fileArray[a]: ", fileArray[a], "fileValue: ", fileValue, "realValue :", realValue);
 			
 			
 			}
