@@ -190,6 +190,12 @@ for(b = 0; b < idArray.length; b++) {
 
 	emailCheck = idArray[b].split(" ");
 	
+	emailCheck[0].trim();
+	emailCheck[1].trim();
+	emailCheck[2].trim();
+	
+	// emailCheck = emailCheck.filter(function(entry) { return entry.trim() != ' '; });
+	
 	/* console.log("emailcheck[0] = ", emailCheck[0]);
 	console.log("emailcheck[1] = ", emailCheck[1]);
 	console.log("emailcheck[2] = ", emailCheck[2]); */
