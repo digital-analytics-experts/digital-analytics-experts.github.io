@@ -230,7 +230,11 @@ function handleProperties(response) {
 	{
 	  
 	  myArray.push(response.result.items[i].userRef.email);
-	  idArray.push(realAccount + " " + realValue
+	  
+	  var realValue = response.result.items[i].userRef.email;
+	  var realAccount = response.result.items[i].entity.accountRef.id;
+		  
+	  idArray.push(realAccount + " " + realValue);
 	  
 	  // if( )// if delete users
 		// {
