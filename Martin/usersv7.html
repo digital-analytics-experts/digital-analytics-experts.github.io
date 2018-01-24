@@ -256,6 +256,8 @@ function handleProperties(response) {
 	  var realAccount = response.result.items[i].entity.accountRef.id;
 	  var realUserId = response.result.items[i].entity.accountUserLink.id;
 	  
+	  console.log("real user id: ",realUserId)
+	  
 	  myArray.push(realValue);
 		  
 	  idArray.push(realAccount + " " + realValue + " " + realUserId);
