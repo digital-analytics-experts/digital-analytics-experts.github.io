@@ -194,6 +194,7 @@ var emailCheck = [];
 	emailCheck[0].trim();
 	if(emailCheck[1])
 	emailCheck[1].trim();
+	emailCheck[2].trim();
 	
 	/* console.log("emailcheck[0] = ", emailCheck[0]);
 	console.log("emailcheck[1] = ", emailCheck[1]); */
@@ -249,12 +250,15 @@ function handleProperties(response) {
 	for(i = 0; i < response.result.items.length; i++)
 	{
 	  
-	  myArray.push(response.result.items[i].userRef.email);
+
 	  
 	  var realValue = response.result.items[i].userRef.email;
 	  var realAccount = response.result.items[i].entity.accountRef.id;
+	  var realUserId = response.result.items[i].entity.accountUserLink.id;
+	  
+	  myArray.push(realValue);
 		  
-	  idArray.push(realAccount + " " + realValue);
+	  idArray.push(realAccount + " " + realValue + " " + realUserId);
 	  
 	  
 
@@ -374,8 +378,7 @@ function deleteUsers(event){
 	  
 	  setTimeout(duplicates, 3000);
 	  setTimeout(searchEmails, 3200);
-	  
-	  	  // console.log(idArray[0]);
+	  displayUsers();
 	  
 	  
     };
