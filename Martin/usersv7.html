@@ -434,8 +434,7 @@ function deleteUsers(event){
 	  
 	  setTimeout(duplicates, 3000);
 	  setTimeout(searchEmails, 3200);
-	  checkUsers();
-	  
+	  setTimeout(checkUsers, 3500);
 	  
     };
     reader.readAsText(input.files[0]);
