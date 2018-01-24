@@ -250,9 +250,34 @@ function handleProperties(response) {
 	for(i = 0; i < response.result.items.length; i++)
 	{
 	  
+	  
+	  if(request == "downloadUsers") {
+	  
+		var realValue = response.result.items[i].userRef.email;
+		myArray.push(realValue);
+	  
+	  }
+	  
+	  else if(request == "deleteUsers") {
+	  
+		  var realAccount = response.result.items[i].entity.accountRef.id;
+		  var realValue = response.result.items[i].userRef.email;
+		  // var realAccount = response.result.items[i].id;
+		  // var realUserId = response.result.items[i].entity.accountUserLink.id;
+		  var realUserId = response.result.items[i].accountUserLink.id;
+		  
+		  // console.log("real user id: ",realUserId)
+		  
+		  
+			  
+		  idArray.push(realAccount + " " + realValue + " " + realUserId);	  
+	  }
+	  
 
 	  
-	  var realValue = response.result.items[i].userRef.email;
+
+	  
+	  /* var realValue = response.result.items[i].userRef.email;
 	  var realAccount = response.result.items[i].entity.accountRef.id;
 	  // var realAccount = response.result.items[i].id;
 	  // var realUserId = response.result.items[i].entity.accountUserLink.id;
@@ -262,7 +287,7 @@ function handleProperties(response) {
 	  
 	  myArray.push(realValue);
 		  
-	  idArray.push(realAccount + " " + realValue + " " + realUserId);
+	  idArray.push(realAccount + " " + realValue + " " + realUserId); */
 	  
 	  // idArray.push(realAccount + " " + realValue);
 	  
@@ -409,7 +434,7 @@ function deleteUsers(event){
   gapi.client.load('analytics', 'v3').then(function() {
 
     // Get a list of all Google Analytics accounts for this user
-    gapi.client.analytics.management.accounts.list().then(handleAccounts);
+    gapi.client.analytics.management.accountUserLinks.list().then(handleAccounts);
   });
   
   }
