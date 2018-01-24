@@ -434,7 +434,7 @@ function deleteUsers(event){
   gapi.client.load('analytics', 'v3').then(function() {
 
     // Get a list of all Google Analytics accounts for this user
-    gapi.client.analytics.management.accountUserLinks.list().then(handleAccounts);
+    gapi.client.analytics.management.accounts.list().then(handleAccounts);
   });
   
   }
