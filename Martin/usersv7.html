@@ -37,7 +37,7 @@
 
 </div>
 
-<button id="confirm-action" hidden>confirm action</button>
+<button id="confirm-button" hidden>confirm action</button>
 
 <script>
 
@@ -79,20 +79,20 @@
 	  var usersButton = document.getElementById('users-button');
 	  var deleteButton = document.getElementById('delete-button');
 	  var removeEmails = document.getElementById('remove-emails');
-	  var confirmAction = document.getElementById('confirm-action');
+	  var confirmButton = document.getElementById('confirm-action');
       if (response.error) {
         authButton.hidden = false;
         usersButton.hidden = true;
 		deleteButton.hidden = true;
 		removeEmails.hidden = true;
-		confirmAction.hidden = true
+		confirmButton.hidden = true
       }
       else {
         authButton.hidden = true;
 		usersButton.hidden = false;
 		deleteButton.hidden = false;
 		removeEmails.hidden = false;
-		confirmAction.hidden = true;
+		confirmButton.hidden = true;
 		document.getElementById("login").textContent = "Welcome, you are logged in";
         // queryAccounts();
       }
@@ -352,7 +352,7 @@ var accId, accName, emailId, accStore;
     // return printThis;
 	
 	document.getElementById("show").innerHTML = printThis;
-	confirmAction.hidden = false;
+	confirmButton.hidden = false;
 
 
 	// for each idArray[accountid][email]
@@ -515,7 +515,7 @@ function deleteUsers(event){
   document.getElementById('auth-button').addEventListener('click', authorize);
   document.getElementById('users-button').addEventListener('click', downloadUsers);
   document.getElementById('delete-button').addEventListener('change', deleteUsers);
-    document.getElementById('confirm-action').addEventListener('change', confirmAction);
+  document.getElementById('confirm-action').addEventListener('change', confirmAction);
 </script>
 
 <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
