@@ -318,9 +318,27 @@ function checkUsers() {
 
 var accId, accName, emailId, accStore; 
 
+
+
+
+    var printThis = "";
+	
+    for(b = 0; b < idArray.length; b++) {
+	
+		accStore = idArray[b].split(" ");
+		
+		accId = accStore[0];
+		accName = accStore[4];
+		emailId = accStore[1];
+		
+        printThis += "<br>"+"Account ID = " + accId + " , Account Name = " + accName + " , Email ID = " + emailId;
+    }
+    return printThis;
+
+
 	// for each idArray[accountid][email]
 	
-		for(b = 0; b < idArray.length; b++) {
+		/* for(b = 0; b < idArray.length; b++) {
 
 			accStore = idArray[b].split(" ");
 			
@@ -331,16 +349,24 @@ var accId, accName, emailId, accStore;
 	
 	// show account id, account name, user email, checked checkbox
 	
-	document.getElementById("show").innerHTML = ("Account ID = " + accId + " , Account Name = " + accName + " , Email ID = " + emailId);
+	function register(){
+    // caution: drop the "new Array" part or it won't work!
+    var ids = ['name','lname','email','password','cpassword'];
+    var printThis = "";
+    for(var i = 0; i < ids.length; i++){
+        printThis += "<br>"+ids[i];
+    }
+    return printThis; // <-- to be printed to the div
+}
+document.getElementById('ids').innerHTML = register();
+
+
+	document.getElementById("show").innerHTML = ("Account ID = " + accId + " , Account Name = " + accName + " , Email ID = " + emailId + "\n");
 	
 	
 	}
 	
-	// form submit remove unchecked idArray[][email]
-
-
-
-
+	// form submit remove unchecked idArray[][email] */
 }
 
 function removeUsers() {
@@ -434,7 +460,7 @@ function deleteUsers(event){
 	  
 	  setTimeout(duplicates, 3000);
 	  setTimeout(searchEmails, 3200);
-	  setTimeout(checkUsers, 3500);
+	  document.getElementById("show").innerHTML = setTimeout(checkUsers, 3500);
 	  
     };
     reader.readAsText(input.files[0]);
