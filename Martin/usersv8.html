@@ -406,7 +406,7 @@ var accId, linkId;
 			linkId = accStore[2];
 		
 			// remove user
-			// try{
+			try{
 			
 				// function deleteAccountUserLink() {
 				
@@ -417,17 +417,17 @@ var accId, linkId;
 				});
 
 					// request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
-					request.execute(function (response) {       console.log("Got callback, response = " + response);           });
+					request.execute(function (response) {       console.log("Got callback, response = " + response.result);           });
 				// }
 				
 				console.log("request: ",linkId);
 			
-			// }
-			// catch(e){
+			}
+			catch(e){
 			
-			// console.log(linkId + " not removed", e);
+				console.log(linkId + " not removed", e);
 			
-			// }
+			}
 		}
 	
 	
