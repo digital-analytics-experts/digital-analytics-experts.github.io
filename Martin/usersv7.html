@@ -62,6 +62,7 @@
   
   var SCOPES = ['https://www.googleapis.com/auth/analytics.manage.users.readonly','https://www.googleapis.com/auth/analytics.readonly'];
   
+  	  var confirmButton = document.getElementById('confirm-action');
 
 
   function authorize(event) {
@@ -79,7 +80,7 @@
 	  var usersButton = document.getElementById('users-button');
 	  var deleteButton = document.getElementById('delete-button');
 	  var removeEmails = document.getElementById('remove-emails');
-	  var confirmButton = document.getElementById('confirm-action');
+	  // var confirmButton = document.getElementById('confirm-action');
       if (response.error) {
         authButton.hidden = false;
         usersButton.hidden = true;
@@ -352,6 +353,7 @@ var accId, accName, emailId, accStore;
     // return printThis;
 	
 	document.getElementById("show").innerHTML = printThis;
+	
 	confirmButton.hidden = false;
 
 
