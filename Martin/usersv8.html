@@ -54,7 +54,7 @@
   var abc;
   var fileArray;
   var fileInput;
-  var request;
+  var makeRequest;
   var idArray = [];
   var updateEmails = [];
 
@@ -102,7 +102,7 @@
   
   
   function downloadUsers(event) {
-  request = "downloadUsers";
+  makeRequest = "downloadUsers";
   queryAccounts();
   
   	setTimeout(duplicates, 3000);
@@ -264,14 +264,14 @@ function handleProperties(response) {
 	{
 	  
 	  
-	  if(request == "downloadUsers") {
+	  if(makeRequest == "downloadUsers") {
 	  
 		var realValue = response.result.items[i].userRef.email;
 		myArray.push(realValue);
 	  
 	  }
 	  
-	  else if(request == "deleteUsers") {
+	  else if(makeRequest == "deleteUsers") {
 	  
 		  var realAccount = response.result.items[i].entity.accountRef.id;
 		  var realValue = response.result.items[i].userRef.email;
@@ -420,7 +420,7 @@ var accId, linkId;
 					// request.execute(function (response) {});
 				// }
 				
-				console.log("request: ",request);
+				console.log("request: ",linkId);
 			
 			}
 			catch(e){
@@ -445,7 +445,7 @@ function duplicates() {
 var compare;
 var compareme;
 
-if(request == "deleteUsers")
+if(makeRequest == "deleteUsers")
 	myArray = idArray;
 
 myArray.sort();
@@ -475,7 +475,7 @@ for(i = 0; i < myArray.length; i++)
 
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 
-if(request == "deleteUsers")
+if(makeRequest == "deleteUsers")
 	idArray = myArray;
  
 }
@@ -497,7 +497,7 @@ function validateEmail()
 }
 
 function deleteUsers(event){
-	request = "deleteUsers";
+	makeRequest = "deleteUsers";
     var input = event.target;
 
     var reader = new FileReader();
