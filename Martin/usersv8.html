@@ -406,9 +406,10 @@ var accId, linkId;
 			linkId = accStore[2];
 		
 			// remove user
-			try{
+			// try{
 			
 				// function deleteAccountUserLink() {
+				
 				var request = gapi.client.analytics.management.accountUserLinks.delete(
 				{
 					'accountId': accId,
@@ -421,12 +422,12 @@ var accId, linkId;
 				
 				console.log("request: ",linkId);
 			
-			}
-			catch(e){
+			// }
+			// catch(e){
 			
-			console.log(linkId + " not removed", e);
+			// console.log(linkId + " not removed", e);
 			
-			}
+			// }
 		}
 	
 	
