@@ -330,9 +330,13 @@ var accId, accName, emailId, accStore;
 		accName = accStore[3];
 		emailId = accStore[1];
 		if(accStore[4])
-		accName += accStore[4];
+		accName += " "+accStore[4];
 		if(accStore[5])
-		accName+= accStore[5];
+		accName+= " "+accStore[5];
+		if(accStore[6])
+		accName+= " "+accStore[6];
+		if(accStore[7])
+		accName+= " "+accStore[7];
 		
         printThis += "<br>"+"<b>Account ID = </b>" + accId + ", <b>Account Name = </b>" + accName + ", <b>Email ID = </b>" + emailId;
 		
