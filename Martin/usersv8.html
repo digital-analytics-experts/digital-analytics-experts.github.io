@@ -417,10 +417,10 @@ var accId, linkId;
 				});
 
 					// request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
-					// request.execute(function (response) {       console.log("Got callback, response = " + response.result);           });
+					request.execute(function (response) {       console.log("Got callback, response = " + response.result);           });
 				// }
 				
-				var x = request.execute();
+				// var x = request.execute();
 				
 				console.log("request: ",linkId);
 			
