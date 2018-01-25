@@ -318,9 +318,6 @@ function checkUsers() {
 
 var accId, accName, emailId, accStore; 
 
-
-
-
     var printThis = "";
 	
     for(b = 0; b < idArray.length; b++) {
@@ -332,6 +329,8 @@ var accId, accName, emailId, accStore;
 		emailId = accStore[1];
 		
         printThis += "<br>"+"Account ID = " + accId + " , Account Name = " + accName + " , Email ID = " + emailId;
+		
+		console.log(printThis);
     }
     return printThis;
 
