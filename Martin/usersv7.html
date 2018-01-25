@@ -328,9 +328,9 @@ var accId, accName, emailId, accStore;
 		accName = accStore[4];
 		emailId = accStore[1];
 		
-        printThis += "<br>"+"Account ID = " + accId + " , Account Name = " + accName + " , Email ID = " + emailId;
+        printThis += "<br>"+"<b>Account ID = </b>" + accId + ", <b>Account Name = </b>" + accName + ", <b>Email ID = </b>" + emailId;
 		
-		console.log(printThis);
+		// console.log(printThis);
     }
     return printThis;
 
@@ -459,10 +459,12 @@ function deleteUsers(event){
 	  
 	  setTimeout(duplicates, 3000);
 	  setTimeout(searchEmails, 3200);
-	  document.getElementById("show").innerHTML = setTimeout(checkUsers, 3500);
+	  // document.getElementById("show").innerHTML = setTimeout(checkUsers, 3500);
 	  
     };
     reader.readAsText(input.files[0]);
+	
+	document.getElementById("show").innerHTML = checkUsers();
 	
 	// if(fileArray)
 	// {
