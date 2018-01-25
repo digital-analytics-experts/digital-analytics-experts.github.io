@@ -332,7 +332,9 @@ var accId, accName, emailId, accStore;
 		
 		// console.log(printThis);
     }
-    return printThis;
+    // return printThis;
+	
+	document.getElementById("show").innerHTML = printThis;
 
 
 	// for each idArray[accountid][email]
@@ -459,12 +461,10 @@ function deleteUsers(event){
 	  
 	  setTimeout(duplicates, 3000);
 	  setTimeout(searchEmails, 3200);
-	  // document.getElementById("show").innerHTML = setTimeout(checkUsers, 3500);
+	  setTimeout(checkUsers, 3500);
 	  
     };
     reader.readAsText(input.files[0]);
-	
-	document.getElementById("show").innerHTML = checkUsers();
 	
 	// if(fileArray)
 	// {
