@@ -409,13 +409,14 @@ var accId, linkId;
 			try{
 			
 				// function deleteAccountUserLink() {
-				var request = gapi.client.analytics.management.accountUserLinks.delete(
+				// var request = gapi.client.analytics.management.accountUserLinks.delete(
+				gapi.client.analytics.management.accountUserLinks.delete(
 				{
 					'accountId': accId,
 					'linkId': linkId
-				});
+				}).execute();
 
-					request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
+					// request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
 					// request.execute(function (response) {});
 				// }
 				
