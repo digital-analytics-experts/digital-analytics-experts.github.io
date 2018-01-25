@@ -416,7 +416,7 @@ var accId, linkId;
 				});
 
 					// request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
-					request.execute(function (response) {});
+					request.execute(function (response) {       console.log("Got callback, response = " + response);           });
 				// }
 				
 				console.log("request: ",linkId);
