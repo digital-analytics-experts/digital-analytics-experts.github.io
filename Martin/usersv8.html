@@ -419,7 +419,7 @@ var accId, linkId, userEmail;
 				{
 				
 					// check if local permissions for email user
-					if(response.items[a].permissions.local && response.items[a].userRef.email == userEmail)
+					if(response.items[a].permissions.local != "" && response.items[a].userRef.email == userEmail)
 					{
 						// get userlink id
 						linkId = response.items[a].id;
