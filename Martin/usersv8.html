@@ -413,7 +413,8 @@ var accId, linkId, userEmail;
 			  var request = gapi.client.analytics.management.accountUserLinks.list({
 				  'accountId': accId
 			  });
-			  request.execute(function (response) {  
+			  request.execute(function (responseAcc) {  
+			  response = responseAcc;
 
 				for(a = 0; a < response.items.length; a++)
 				{
@@ -490,7 +491,8 @@ var accId, linkId, userEmail, propId;
 			  'webPropertyId': '~all'
 			  });
 
-			  request.execute(function (response) {  
+			  request.execute(function (responseProp) {  
+			  response = responseProp;
 
 				for(a = 0; a < response.items.length; a++)
 				{
@@ -572,7 +574,8 @@ var accId, linkId, userEmail, propId, profId;
 				  'profileId': '~all'
 			  });
 			
-			  request.execute(function (response) {  
+			  request.execute(function (responseProf) {  
+			  response = responseProf;
 
 				for(a = 0; a < response.items.length; a++)
 				{
