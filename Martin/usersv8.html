@@ -564,7 +564,7 @@ var accId, linkId, userEmail, propId, profId;
 			// linkId = accStore[2];
 			userEmail = accStore[1];
 			
-			console.log("Profile user Email: ", userEmail);
+			// console.log("Profile user Email: ", userEmail);
 			
 			// see if permission at account level. If so then run delete. Do same for proeprty and profile level
 			
@@ -578,8 +578,6 @@ var accId, linkId, userEmail, propId, profId;
 			
 			  request.execute(function (responseProf) {  
 			  response = responseProf;
-			  
-			  console.log("Profile response: ", response.toString());
 
 				for(a = 0; a < response.items.length; a++)
 				{
