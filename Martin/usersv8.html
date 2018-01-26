@@ -737,12 +737,12 @@ function deleteUsers(event){
   function confirmAction(event) {
 	console.log("Confirmed");
 	
-	// setTimeout(removeUsersAccount, 3000);
-	// setTimeout(removeUsersProperty, 3200);
-	// setTimeout(removeUsersProfile, 3500);
-	removeUsersAccount();
-	removeUsersProperty();
-	removeUsersProfile();
+	setTimeout(removeUsersAccount, 3000);
+	setTimeout(removeUsersProperty, 3200);
+	setTimeout(removeUsersProfile, 3500);
+	// removeUsersAccount();
+	// removeUsersProperty();
+	// removeUsersProfile();
 	
 	// updateEmails.length = 0;
 	document.getElementById("show").innerHTML = "Action complete. See Console for details";
