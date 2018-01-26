@@ -491,7 +491,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 			  var request = gapi.client.analytics.management.webpropertyUserLinks.list({
 			  'accountId': accId,
 			  'webPropertyId': '~all',
-			  'max': 2000
+			  'max': '2000'
 			  });
 
 			  request.execute(function (responseProp) {  
