@@ -584,6 +584,8 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 			
 			  request.execute(function (responseProf) {  
 			  response = responseProf;
+			  
+			  console.log("Response length at PROFILE: ", response.items.length);
 
 				for(a = 0; a < response.items.length; a++)
 				{
@@ -739,11 +741,11 @@ function deleteUsers(event){
   function confirmAction(event) {
 	console.log("Confirmed");
 	
-	// setTimeout(removeUsersAccount, 3000);
-	// setTimeout(removeUsersProperty, 3200);
-	// setTimeout(removeUsersProfile, 3500);
+	setTimeout(removeUsersAccount, 3000);
+	setTimeout(removeUsersProperty, 3200);
+	setTimeout(removeUsersProfile, 3500);
 	// removeUsersAccount();
-	removeUsersProperty();
+	// removeUsersProperty();
 	// removeUsersProfile();
 	
 	// updateEmails.length = 0;
