@@ -58,6 +58,7 @@
   var idArray = [];
   var updateEmails = [];
   var accountArray = [];
+  var emailArray = [];
 
   // Set authorized scope.
   
@@ -290,6 +291,7 @@ function handleProperties(response) {
 			  
 		  idArray.push(realAccount + " " + realValue + " " + realUserId + " " + realName);	 
 		  accountArray.push(realAccount);
+		  emailArray.push(realValue);
 	  }
 	  
 
@@ -324,6 +326,7 @@ function handleProperties(response) {
   }
   
   duplicates(accountArray);
+  duplicates(emailArray);
 }
 
 
@@ -421,11 +424,11 @@ for(x = 0; x < accountArray.length; x++)
 		{
 					
 			// for each updateEmails[accountid][linkId]
-			for(b = 0; b < updateEmails.length; b++) {
+			for(b = 0; b < emailArray.length; b++) {
 		
-				accStore = updateEmails[b].split(" ");
+				accStore = emailArray[b]; // .split(" ");
 							
-				accId = accStore[0];
+				// accId = accStore[0];
 				// linkId = accStore[2];
 				userEmail = accStore[1];
 					
