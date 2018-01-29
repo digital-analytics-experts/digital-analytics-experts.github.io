@@ -426,11 +426,11 @@ for(x = 0; x < accountArray.length; x++)
 			// for each updateEmails[accountid][linkId]
 			for(b = 0; b < emailArray.length; b++) {
 		
-				accStore = emailArray[b]; // .split(" ");
+				// accStore = emailArray[b].split(" ");
 							
 				// accId = accStore[0];
 				// linkId = accStore[2];
-				userEmail = accStore[1];
+				userEmail = emailArray[b];
 					
 				// check if local permissions for email user
 				if(response.items[a].permissions.local !== 'undefined' && response.items[a].permissions.local.length > 0 && response.items[a].userRef.email == userEmail)
