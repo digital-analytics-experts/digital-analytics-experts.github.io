@@ -702,10 +702,14 @@ for(i = 0; i < myArray.length; i++)
 myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 
 if(makeRequest == "deleteUsers")
-	idArray = myArray;
-	
+{
 	if(inputArray !== undefined)
 	accountArray = myArray;
+	else
+	idArray = myArray;
+}
+	
+
  
 }
 
