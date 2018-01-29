@@ -107,6 +107,8 @@ function handleAccounts(response) {
   if (response.result.items && response.result.items.length) {
     // Get the Google Analytics accounts.
 	
+	setTimeout(sleep, 1000);
+	
 	for(i = 0; i < response.result.items.length; i++)
 	{
 	
