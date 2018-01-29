@@ -291,6 +291,7 @@ function handleProperties(response) {
 			  
 		  idArray.push(realAccount + " " + realValue + " " + realUserId + " " + realName);	 
 		  accountArray.push(realAccount);
+		  console.log(accountArray.to String());
 		  emailArray.push(realValue);
 	  }
 	  
@@ -615,7 +616,7 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 						propId = response.items[a].entity.profileRef.webPropertyId;
 						profId = response.items[a].profileRef.id;
 					
-						// remove user
+						// remove user`
 						try{
 						
 							// function deleteAccountUserLink() {
