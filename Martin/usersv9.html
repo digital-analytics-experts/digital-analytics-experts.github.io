@@ -405,9 +405,9 @@ var accId, linkId, userEmail;
 			
 // if email matches email from array, and local permissions are set, get user link id and delete
 
-for(x = 0; x < realAccount.length; x++)
+for(x = 0; x < accountArray.length; x++)
 {
-	accId = realAccount[x];
+	accId = accountArray[x];
 			
 	var request = gapi.client.analytics.management.accountUserLinks.list({
 					  'accountId': accId
