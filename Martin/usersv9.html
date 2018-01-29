@@ -409,10 +409,10 @@ response = responseAcc;
 	for(a = 0; a < response.items.length; a++)
 	{
 				
-	// for each updateEmails[accountid][linkId]
-	for(b = 0; b < updateEmails.length; b++) {
+		// for each updateEmails[accountid][linkId]
+		for(b = 0; b < updateEmails.length; b++) {
 	
-		accStore = updateEmails[b].split(" ");
+			accStore = updateEmails[b].split(" ");
 						
 			accId = accStore[0];
 			// linkId = accStore[2];
@@ -447,13 +447,12 @@ response = responseAcc;
 				}
 				catch(e){
 						
-					console.log(linkId + " not removed", e);
+				console.log(linkId + " not removed", e);
 						
 				}
 			}
 		}
-	}
-			
+	}		
 });
 	
 	
