@@ -408,6 +408,8 @@ var accId, linkId, userEmail;
 for(x = 0; x < accountArray.length; x++)
 {
 	accId = accountArray[x];
+	
+	console.log("Account Id: ",accId)
 			
 	var request = gapi.client.analytics.management.accountUserLinks.list({
 					  'accountId': accId
