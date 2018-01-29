@@ -656,10 +656,11 @@ function duplicates(array) {
 
 var compare;
 var compareme;
+var inputArray = array
 
-myArray = array;
+myArray = inputArray;
 
-if(array.length == 0 && array == undefined)
+if(inputArray == undefined)
 {
 	if(makeRequest == "deleteUsers")
 		myArray = idArray;
