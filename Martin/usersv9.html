@@ -57,6 +57,7 @@
   var makeRequest;
   var idArray = [];
   var updateEmails = [];
+  var accountArray = [];
 
   // Set authorized scope.
   
@@ -286,7 +287,8 @@ function handleProperties(response) {
 		  
 		  
 			  
-		  idArray.push(realAccount + " " + realValue + " " + realUserId + " " + realName);	  
+		  idArray.push(realAccount + " " + realValue + " " + realUserId + " " + realName);	 
+		  accountArray.push(realAccount);
 	  }
 	  
 
@@ -319,6 +321,8 @@ function handleProperties(response) {
   } else {
     console.log('No email addresses found for this user.');
   }
+  
+  duplicates(accountArray);
 }
 
 
@@ -399,68 +403,73 @@ var accId, linkId, userEmail;
 // see if permission at account level. If so then run delete. Do same for proeprty and profile level
 			
 // if email matches email from array, and local permissions are set, get user link id and delete
+
+for(x = 0; x < realAccount.length; x++)
+{
+	accId = realAccount[x];
 			
-var request = gapi.client.analytics.management.accountUserLinks.list({
-				  'accountId': accId
-});
-request.execute(function (responseAcc) {  
-response = responseAcc;
+	var request = gapi.client.analytics.management.accountUserLinks.list({
+					  'accountId': accId
+	});
+	request.execute(function (responseAcc) {  
+	response = responseAcc;
 
-	for(a = 0; a < response.items.length; a++)
-	{
-				
-		// for each updateEmails[accountid][linkId]
-		for(b = 0; b < updateEmails.length; b++) {
-	
-			accStore = updateEmails[b].split(" ");
-						
-			accId = accStore[0];
-			// linkId = accStore[2];
-			userEmail = accStore[1];
-				
-			// check if local permissions for email user
-			if(response.items[a].permissions.local !== 'undefined' && response.items[a].permissions.local.length > 0 && response.items[a].userRef.email == userEmail)
-			{
-				// get userlink id
-				linkId = response.items[a].id;
-				console.log("About to change Account level for: ", userEmail);
+		for(a = 0; a < response.items.length; a++)
+		{
 					
-				// remove user
-				try{
-						
-					// function deleteAccountUserLink() {
+			// for each updateEmails[accountid][linkId]
+			for(b = 0; b < updateEmails.length; b++) {
+		
+				accStore = updateEmails[b].split(" ");
 							
-					/* var request = gapi.client.analytics.management.accountUserLinks.delete(
-					{
-						'accountId': accId,
-						'linkId': linkId
-					});
+				accId = accStore[0];
+				// linkId = accStore[2];
+				userEmail = accStore[1];
+					
+				// check if local permissions for email user
+				if(response.items[a].permissions.local !== 'undefined' && response.items[a].permissions.local.length > 0 && response.items[a].userRef.email == userEmail)
+				{
+					// get userlink id
+					linkId = response.items[a].id;
+					console.log("About to change Account level for: ", userEmail);
+						
+					// remove user
+					try{
+							
+						// function deleteAccountUserLink() {
+								
+						/* var request = gapi.client.analytics.management.accountUserLinks.delete(
+						{
+							'accountId': accId,
+							'linkId': linkId
+						});
 
-					// request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
-					request.execute(function (response) {       console.log("Got callback, response = " + response.result);           });
-					// }
+						// request.execute(); // (function (response) { console.log("executed: ",linkId)) } // Handle the response. });
+						request.execute(function (response) {       console.log("Got callback, response = " + response.result);           });
+						// }
+								
+						// var x = request.execute(); */
+								
+						console.log("request: ",linkId);
 							
-					// var x = request.execute(); */
+					}
+					catch(e){
 							
-					console.log("request: ",linkId);
-						
-				}
-				catch(e){
-						
-				console.log(linkId + " not removed", e);
-						
+						console.log(linkId + " not removed", e);
+							
+					}
 				}
 			}
-		}
-	}		
-});
-	
-	
-	// clear updateEmails
-	// updateEmails.length = 0;
-	
-	// show message that users deleted
-	document.getElementById("show").innerHTML = "Account action complete. See Console for details";
+		}		
+	});
+		
+		
+		// clear updateEmails
+		// updateEmails.length = 0;
+		
+		// show message that users deleted
+		document.getElementById("show").innerHTML = "Account action complete. See Console for details";
+	}
 	
 }
 
@@ -643,13 +652,18 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 }
 
 
-function duplicates() {
+function duplicates(array) {
 
 var compare;
 var compareme;
 
-if(makeRequest == "deleteUsers")
-	myArray = idArray;
+myArray = array;
+
+if(array.length == 0 && array == undefined)
+{
+	if(makeRequest == "deleteUsers")
+		myArray = idArray;
+}
 
 myArray.sort();
 
