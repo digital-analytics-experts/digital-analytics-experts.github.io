@@ -664,7 +664,7 @@ function duplicates(array) {
 
 var compare;
 var compareme;
-var inputArray = array
+var inputArray = array;
 
 myArray = inputArray;
 
@@ -703,6 +703,9 @@ myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 
 if(makeRequest == "deleteUsers")
 	idArray = myArray;
+	
+	if(inputArray !== undefined)
+	accountArray = myArray;
  
 }
 
