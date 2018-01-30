@@ -250,7 +250,7 @@ var emailCheck = [];
 
 // emailCheck.length = 0;
 
-console.log(updateEmails.toString());
+console.log("matched emails found: ",updateEmails.toString());
 
 }
 
@@ -319,6 +319,8 @@ function handleProperties(response) {
   } else {
     console.log('No email addresses found for this user.');
   }
+  
+  console.out("API account users: ",idArray.toString());
 }
 
 
@@ -712,16 +714,16 @@ function deleteUsers(event){
 	  
 	  fileArray = fileInput.split("\n");
       // console.log(reader.result.substring(0, 200));
-	  console.log(fileArray[5]);
+	  console.log("Contents of file: ",fileArray.toString());
 	  
 	  
 	  
 	  
 	  retrieveUsers()
 	  
-			duplicates();
-			searchEmails();
-			checkUsers();
+	duplicates();
+	searchEmails();
+	checkUsers();
 		
 	  // setTimeout(duplicates, 3000);
 	  // setTimeout(searchEmails, 3200);
