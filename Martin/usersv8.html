@@ -730,13 +730,13 @@ function deleteUsers(event){
 	  
 	  retrieveUsers()
 	  
-	duplicates();
-	searchEmails();
-	checkUsers();
+	// duplicates();
+	// searchEmails();
+	// checkUsers();
 		
-	  // setTimeout(duplicates, 3000);
-	  // setTimeout(searchEmails, 3200);
-	  // setTimeout(checkUsers, 3500);
+	  setTimeout(duplicates, 3000);
+	  setTimeout(searchEmails, 3200);
+	  setTimeout(checkUsers, 3500);
 	  
     };
     reader.readAsText(input.files[0]);
