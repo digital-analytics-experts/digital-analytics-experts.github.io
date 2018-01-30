@@ -254,6 +254,9 @@ console.log("matched emails found: ",updateEmails.toString());
 console.log("idArray[0]: ",idArray[0]);
 console.log("fileArray[0]: ",fileArray[0]);
 
+
+console.log("idArray okay at searchEmails: ", idArray.toString());
+
 }
 
 // get items from account
@@ -687,6 +690,8 @@ myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 
 if(makeRequest == "deleteUsers")
 	idArray = myArray;
+	
+	console.log("idArray okay at duplicates: ", idArray.toString());
  
 }
 
