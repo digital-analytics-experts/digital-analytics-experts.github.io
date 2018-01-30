@@ -658,6 +658,8 @@ function duplicates() {
 var compare;
 var compareme;
 
+	console.log("idArray okay at duplicates: ", idArray.toString());
+
 if(makeRequest == "deleteUsers")
 	myArray = idArray;
 
@@ -691,7 +693,6 @@ myArray = myArray.filter(function(entry) { return entry.trim() != ''; });
 if(makeRequest == "deleteUsers")
 	idArray = myArray;
 	
-	console.log("idArray okay at duplicates: ", idArray.toString());
  
 }
 
