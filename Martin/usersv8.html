@@ -207,7 +207,6 @@ var emailCheck = [];
 	emailCheck[0].trim();
 	if(emailCheck[1])
 	emailCheck[1].trim();
-	if(emailCheck[2])
 	emailCheck[2].trim();
 	
 	/* console.log("emailcheck[0] = ", emailCheck[0]);
@@ -217,7 +216,7 @@ var emailCheck = [];
 		fileArray[c].trim();
 		// console.log("fileArray[c] = ", fileArray[c]);
 		
-			if(fileArray[c].includes(emailCheck[1])) { // && fileArray[c] !== undefined && emailCheck[1] !== undefined) {
+			if(fileArray[c].includes(emailCheck[1]) && fileArray[c] != undefined && emailCheck[1] != undefined) {
 				console.log("found match",idArray[b], fileArray[c], emailCheck[1]);
 				updateEmails.push(idArray[b]);
 				c = fileArray.length + 1;
@@ -252,6 +251,8 @@ var emailCheck = [];
 // emailCheck.length = 0;
 
 console.log("matched emails found: ",updateEmails.toString());
+console.log("idArray[0]: ",idArray[0]);
+console.log("fileArray[0]: ",fileArray[0]);
 
 }
 
