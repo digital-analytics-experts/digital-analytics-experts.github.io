@@ -425,7 +425,7 @@ var length = 0;
 			  request.execute(function (responseAcc) {  
 			  response = responseAcc;
 			  
-			  if(response.items.length > 0)
+			  if(response)
 				length = response.items.length;
 
 				for(a = 0; a < length; a++)
@@ -514,7 +514,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 			  request.execute(function (responseProp) {  
 			  response = responseProp;
 			  
-			  if(response.items.length > 0)
+			  if(response)
 				length = response.items.length;
 			  
 			  // console.log("Response length at PROPERTY: ", response.items.length);
@@ -611,7 +611,7 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 			  request.execute(function (responseProf) {  
 			  response = responseProf;
 			  
-			  if(response.items.length > 0)
+			  if(response)
 				length = response.items.length;
 			  
 			  // console.log("Response length at PROFILE: ", response.items.length);
