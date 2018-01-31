@@ -400,8 +400,7 @@ document.getElementById('ids').innerHTML = register();
 
 function removeUsersAccount() {
 
-var accId, linkId, userEmail;
-var length = 0;
+var accId, linkId, userEmail, length;
 
 	// on form submit 
 	
@@ -480,9 +479,7 @@ var length = 0;
 
 function removeUsersProperty() {
 
-var accId, linkId, userEmail, propId;
-
-var length = 0;
+var accId, linkId, userEmail, propId, length;
 
 if(response.items.length > 0)
 	length = response.items.length;
@@ -575,9 +572,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 
 function removeUsersProfile() {
 
-var accId, linkId, userEmail, propId, profId;
-
-var length = 0;
+var accId, linkId, userEmail, propId, profId, length;
 
 if(response.items.length > 0)
 	length = response.items.length;
