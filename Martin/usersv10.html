@@ -400,7 +400,9 @@ document.getElementById('ids').innerHTML = register();
 
 function removeUsersAccount() {
 
-var accId, linkId, userEmail, length;
+var accId, linkId, userEmail;
+
+try{
 
 	// on form submit 
 	
@@ -423,11 +425,8 @@ var accId, linkId, userEmail, length;
 			  });
 			  request.execute(function (responseAcc) {  
 			  response = responseAcc;
-			  
-			  if(response)
-				length = response.items.length;
 
-				for(a = 0; a < length; a++)
+				for(a = 0; a < response.items.length; a++)
 				{
 				
 					// check if local permissions for email user
@@ -474,15 +473,21 @@ var accId, linkId, userEmail, length;
 	
 	// show message that users deleted
 	document.getElementById("show").innerHTML = "Account action complete. See Console for details";
+	}
+	
+								catch(e){
+						
+							console.log("no matches PROPERTY", e);
+						
+						}
 	
 }
 
 function removeUsersProperty() {
 
-var accId, linkId, userEmail, propId, length;
+var accId, linkId, userEmail, propId;
 
-if(response.items.length > 0)
-	length = response.items.length;
+try{
 
 console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 
@@ -511,12 +516,9 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 			  request.execute(function (responseProp) {  
 			  response = responseProp;
 			  
-			  if(response)
-				length = response.items.length;
-			  
 			  // console.log("Response length at PROPERTY: ", response.items.length);
 
-				for(a = 0; a < length; a++)
+				for(a = 0; a < response.items.length; a++)
 				{
 				
 					// check if local permissions for email user
@@ -567,15 +569,19 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 	
 	// show message that users deleted
 	document.getElementById("show").innerHTML = "Property action complete. See Console for details";
+	}
+	
+							catch(e){
+						
+							console.log("no matches PROPERTY", e);
+						
+						}
 	
 }
 
 function removeUsersProfile() {
 
-var accId, linkId, userEmail, propId, profId, length;
-
-if(response.items.length > 0)
-	length = response.items.length;
+var accId, linkId, userEmail, propId, profId;
 
 console.log("updateEmails length at PROFILE: ", updateEmails.length);
 
@@ -606,12 +612,9 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 			  request.execute(function (responseProf) {  
 			  response = responseProf;
 			  
-			  if(response)
-				length = response.items.length;
-			  
 			  // console.log("Response length at PROFILE: ", response.items.length);
 
-				for(a = 0; a < length; a++)
+				for(a = 0; a < response.items.length; a++)
 				{
 				
 					// check if local permissions for email user
