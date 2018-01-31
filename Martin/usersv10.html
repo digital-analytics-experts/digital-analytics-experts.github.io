@@ -501,7 +501,7 @@ var accId, linkId, userEmail, propId;
 			  request.execute(function (responseProp) {  
 			  response = responseProp });
 
-if(response.items.length !== null || response.items.length !== undefined) {
+if(response !== null || response !== undefined) {
 
 console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 
@@ -605,7 +605,7 @@ var accId, linkId, userEmail, propId, profId;
 			  request.execute(function (responseProf) {  
 			  response = responseProf});
 
-if(response.items.length !== null || response.items.length !== undefined) {
+if(response !== null || response !== undefined) {
 
 console.log("updateEmails length at PROFILE: ", updateEmails.length);
 
