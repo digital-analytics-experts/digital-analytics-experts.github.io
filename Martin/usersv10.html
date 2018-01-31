@@ -402,6 +402,12 @@ function removeUsersAccount() {
 
 var accId, linkId, userEmail;
 
+			  var request = gapi.client.analytics.management.accountUserLinks.list({
+				  'accountId': accId
+			  });
+			  request.execute(function (responseAcc) {  
+			  response = responseAcc;
+
 if(response.items.length !== null || response.items.length !== undefined) {
 
 	// on form submit 
@@ -485,6 +491,15 @@ if(response.items.length !== null || response.items.length !== undefined) {
 function removeUsersProperty() {
 
 var accId, linkId, userEmail, propId;
+
+			  var request = gapi.client.analytics.management.webpropertyUserLinks.list({
+			  'accountId': accId,
+			  'webPropertyId': '~all',
+			  'max-results': 10000
+			  });
+
+			  request.execute(function (responseProp) {  
+			  response = responseProp;
 
 if(response.items.length !== null || response.items.length !== undefined) {
 
@@ -580,6 +595,15 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 function removeUsersProfile() {
 
 var accId, linkId, userEmail, propId, profId;
+
+			 var request = gapi.client.analytics.management.profileUserLinks.list({
+				  'accountId': accId,
+				  'webPropertyId': '~all',
+				  'profileId': '~all'
+			  });
+			
+			  request.execute(function (responseProf) {  
+			  response = responseProf;
 
 if(response.items.length !== null || response.items.length !== undefined) {
 
