@@ -402,7 +402,7 @@ function removeUsersAccount() {
 
 var accId, linkId, userEmail;
 
-try{
+if(response.items.length !== null || response.items.length !== undefined) {
 
 	// on form submit 
 	
@@ -475,11 +475,10 @@ try{
 	document.getElementById("show").innerHTML = "Account action complete. See Console for details";
 	}
 	
-								catch(e){
-						
-							console.log("no matches ACCOUNT", e);
-						
-						}
+	else {
+		console.log("No Porperties found");
+	
+	}
 	
 }
 
@@ -571,11 +570,18 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 	document.getElementById("show").innerHTML = "Property action complete. See Console for details";
 	}
 	
+	else {
+		console.log("No Porperties found");
+	
+	}
+	
 }
 
 function removeUsersProfile() {
 
 var accId, linkId, userEmail, propId, profId;
+
+if(response.items.length !== null || response.items.length !== undefined) {
 
 console.log("updateEmails length at PROFILE: ", updateEmails.length);
 
@@ -661,6 +667,13 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 	
 	// show message that users deleted
 	document.getElementById("show").innerHTML = "Profile action complete. See Console for details";
+	
+	}
+	
+		else {
+		console.log("No Profiles found");
+	
+	}
 	
 }
 
