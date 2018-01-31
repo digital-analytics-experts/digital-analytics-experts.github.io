@@ -487,7 +487,7 @@ function removeUsersProperty() {
 
 var accId, linkId, userEmail, propId;
 
-if(response.items.length !== 'undefined') {
+if(response.items.length !== null || response.items.length !== undefined) {
 
 console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 
