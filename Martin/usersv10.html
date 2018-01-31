@@ -424,7 +424,8 @@ var accId, linkId, userEmail;
 			  request.execute(function (responseAcc) {  
 			  response = responseAcc;
 
-				for(a = 0; a < response.items.length; a++)
+				// for(a = 0; a < response.items.length; a++)
+				for(a in response.items.length)
 				{
 				
 					// check if local permissions for email user
@@ -597,7 +598,8 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 			  
 			  console.log("Response length at PROFILE: ", response.items.length);
 
-				for(a = 0; a < response.items.length; a++)
+				// for(a = 0; a < response.items.length; a++)
+				for(a in response.items.length)
 				{
 				
 					// check if local permissions for email user
