@@ -502,7 +502,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 			  'max-results': 10000
 			  });
 
-			  request.execute(function (responseProp) {  
+			  try{ request.execute(function (responseProp) {  
 			  response = responseProp;
 			  
 			  // console.log("Response length at PROPERTY: ", response.items.length);
@@ -553,6 +553,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 				}
 			
 			});
+			}
 		}
 	
 	
