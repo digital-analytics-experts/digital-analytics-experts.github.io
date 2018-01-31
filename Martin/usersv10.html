@@ -401,6 +401,10 @@ document.getElementById('ids').innerHTML = register();
 function removeUsersAccount() {
 
 var accId, linkId, userEmail;
+var length = 0;
+
+if(response.items.length > 0)
+	length = response.items.length;
 
 	// on form submit 
 	
@@ -424,7 +428,7 @@ var accId, linkId, userEmail;
 			  request.execute(function (responseAcc) {  
 			  response = responseAcc;
 
-				for(a = 0; a < response.items.length; a++)
+				for(a = 0; a < length; a++)
 				{
 				
 					// check if local permissions for email user
@@ -478,6 +482,11 @@ function removeUsersProperty() {
 
 var accId, linkId, userEmail, propId;
 
+var length = 0;
+
+if(response.items.length > 0)
+	length = response.items.length;
+
 console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 
 	// on form submit 
@@ -507,7 +516,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 			  
 			  // console.log("Response length at PROPERTY: ", response.items.length);
 
-				for(a = 0; a < response.items.length; a++)
+				for(a = 0; a < length; a++)
 				{
 				
 					// check if local permissions for email user
@@ -565,6 +574,11 @@ function removeUsersProfile() {
 
 var accId, linkId, userEmail, propId, profId;
 
+var length = 0;
+
+if(response.items.length > 0)
+	length = response.items.length;
+
 console.log("updateEmails length at PROFILE: ", updateEmails.length);
 
 	// on form submit 
@@ -596,7 +610,7 @@ console.log("updateEmails length at PROFILE: ", updateEmails.length);
 			  
 			  // console.log("Response length at PROFILE: ", response.items.length);
 
-				for(a = 0; a < response.items.length; a++)
+				for(a = 0; a < length; a++)
 				{
 				
 					// check if local permissions for email user
