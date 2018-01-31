@@ -477,7 +477,7 @@ try{
 	
 								catch(e){
 						
-							console.log("no matches PROPERTY", e);
+							console.log("no matches ACCOUNT", e);
 						
 						}
 	
@@ -487,7 +487,7 @@ function removeUsersProperty() {
 
 var accId, linkId, userEmail, propId;
 
-try{
+if(response.items.length !== 'undefined') {
 
 console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 
@@ -570,12 +570,6 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 	// show message that users deleted
 	document.getElementById("show").innerHTML = "Property action complete. See Console for details";
 	}
-	
-							catch(e){
-						
-							console.log("no matches PROPERTY", e);
-						
-						}
 	
 }
 
