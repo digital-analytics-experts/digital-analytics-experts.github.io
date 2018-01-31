@@ -506,6 +506,8 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 			  response = responseProp;
 			  
 			  console.log("Response length at PROPERTY: ", response.items.length);
+			  
+			  if(response.items.length > 0){
 
 				for(a = 0; a < response.items.length; a++)
 				{
@@ -547,6 +549,7 @@ console.log("updateEmails length at PROPERTY: ", updateEmails.length);
 						
 						}
 					}
+				}
 				}
 			
 			});
