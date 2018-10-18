@@ -22,6 +22,7 @@
 
   // Query the API and print the results to the page.
   function queryReports() {
+  console.log("queryReports");
     gapi.client.request({
       path: '/v4/reports:batchGet',
       root: 'https://analyticsreporting.googleapis.com/',
@@ -48,6 +49,7 @@
   }
 
   function displayResults(response) {
+  console.log("displarResults");
     var formattedJson = JSON.stringify(response.result, null, 2);
     document.getElementById('query-output').value = formattedJson;
   }
