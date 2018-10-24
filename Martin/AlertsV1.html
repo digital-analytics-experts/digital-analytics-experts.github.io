@@ -58,7 +58,7 @@
   {
   console.log("displarResults");
   var formattedJsontmp = JSON.stringify(response.result, null, 2);
-	    formattedJson = formattedJson.concat(formattedJsontmp);
+	    formattedJson = formattedJson + formattedJsontmp;
     document.getElementById('query-output').value = formattedJson;
   
   }
