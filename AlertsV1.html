@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello Analytics Reporting API V4</title>
+  <meta name="google-signin-client_id" content="733015638140-da8nkpm0rj9qtnvogslciginfcv3631a.apps.googleusercontent.com">
+  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+</head>
+<body>
+
+<h1>Hello Analytics Reporting API V4</h1>
+
+<!-- The Sign-in button. This will run `queryReports()` on success. -->
+<p class="g-signin2" data-onsuccess="queryReports"></p>
+
+<!-- The API response will be printed here. -->
+<textarea cols="80" rows="20" id="query-output"></textarea>
+
+<script>
+  // Replace with your view ID.
+  var VIEW_ID = '15753540'; ["15753450", "15753540", "19209080"];
+  var formattedJson = "";
+  var dateRange = new Date();
+  var year = dateRange.getFullYear();
+  var month = dateRange.getMonth();
+  var day = dateRange.getDate();
+  
+  var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
+
+  // Query the API and print the results to the page.
+  function queryReports() {
+	transactions_alerts();
+	
+	
+	
+  }
+  
+  function transactions_alerts() {
+  
+  // for(i = 0; i< VIEW_ID.length; i++)
+  // {
+  
+  console.log("queryReports");
+    gapi.client.request({
+      path: '/v4/reports:batchGet',
+      root: 'https://analyticsreporting.googleapis.com/',
+      method: 'POST',
+      body: {
+        reportRequests: [
+          {
+            viewId: VIEW_ID, //[i],
+			dimensions : [
+			{
+				name : 'ga:segment'
+			},
+			{
+				name : 'ga:pageTitle'
+			}],
+            dateRanges: [
+              {
+                startDate: '2018-10-23', // year+"-"+month+"-"+day,
+                endDate: '2018-10-23' // year+"-"+month+"-"+day
+              }
+            ],
+            metrics: [
+              {
+                expression: 'ga:sessions'
+              },
+			  {
+			  expression: 'ga:transactions'
+			  }
+            ],
+			segments : [
+			{
+				dynamicSegment :
+				{	
+					name : 'OrderConfirmationPage',
+					userSegment :
+					{
+						segmentFilters : [
+						{
+							simpleSegment : 
+							{	
+								orFiltersForSegment : [
+								{
+									segmentFilterClauses : [
+									{
+										dimensionFilter :
+										{
+											dimensionName : 'ga:pageTitle',
+											operator : 'REGEXP',
+											expressions : ['order']
+											}
+									}
+									]
+								}
+								]
+							}
+						}
+						]
+					}
+				}
+			}
+			]
+          }
+        ]
+      }
+    }).then(process, console.error.bind(console));
+	// }
+  }
+  
+  function process(response)
+  {
+  console.log("displarResults");
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  var formattedJsontmp = JSON.stringify(response.result, null, 2);
+	    formattedJson = formattedJson + formattedJsontmp;
+    document.getElementById('query-output').value = formattedJson;
+  
+  }
+</script>
+
+<!-- Load the JavaScript API client and Sign-in library. -->
+<script src="https://apis.google.com/js/client:platform.js"></script>
+
+</body>
+</html>
