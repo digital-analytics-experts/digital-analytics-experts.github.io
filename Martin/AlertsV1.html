@@ -20,9 +20,10 @@
   // Replace with your view ID.
   var VIEW_ID = ["15753450", "15753540", "19209080"];
   var formattedJson = "";
-  var year = getFullYear();
-  var month = getMonth();
-  var day = getDate();
+  var dateRange = new Date();
+  var year = dateRange.getFullYear();
+  var month = dateRange.getMonth();
+  var day = dateRange.getDate();
   
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
 
