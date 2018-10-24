@@ -18,7 +18,7 @@
 
 <script>
   // Replace with your view ID.
-  var VIEW_ID = ["15753450"]; //, "15753540", "19209080"];
+  var VIEW_ID = '15753540'; ["15753450", "15753540", "19209080"];
   var formattedJson = "";
   var dateRange = new Date();
   var year = dateRange.getFullYear();
@@ -37,8 +37,8 @@
   
   function transactions_alerts() {
   
-  for(i = 0; i< VIEW_ID.length; i++)
-  {
+  // for(i = 0; i< VIEW_ID.length; i++)
+  // {
   
   console.log("queryReports");
     gapi.client.request({
@@ -48,7 +48,7 @@
       body: {
         reportRequests: [
           {
-            viewId: VIEW_ID[i],
+            viewId: VIEW_ID; //[i],
 			dimensions : [
 			{
 				name : 'ga:segment'
@@ -104,7 +104,7 @@
         ]
       }
     }).then(process, console.error.bind(console));
-	}
+	// }
   }
   
   function process(response)
