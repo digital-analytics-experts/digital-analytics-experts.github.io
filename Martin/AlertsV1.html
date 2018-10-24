@@ -23,6 +23,13 @@
 
   // Query the API and print the results to the page.
   function queryReports() {
+	transactions_alerts();
+	
+	
+	
+  }
+  
+  function transactions_alerts() {
   
   for(i = 0; i< VIEW_ID.length; i++)
   {
@@ -61,12 +68,6 @@
 	    formattedJson = formattedJson + formattedJsontmp;
     document.getElementById('query-output').value = formattedJson;
   
-  }
-
-  function displayResults(response) {
-  console.log("displarResults");
-    var formattedJson = JSON.stringify(response.result, null, 2);
-    document.getElementById('query-output').value = formattedJson;
   }
 </script>
 
