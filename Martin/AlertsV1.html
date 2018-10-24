@@ -19,6 +19,7 @@
 <script>
   // Replace with your view ID.
   var VIEW_ID = ["15753450", "15753540", "19209080"];
+  var formattedJson;
 
   // Query the API and print the results to the page.
   function queryReports() {
@@ -49,8 +50,15 @@
           }
         ]
       }
-    }).then(displayResults, console.error.bind(console));
+    }).then(process, console.error.bind(console));
 	}
+  }
+  
+  function process()
+  {
+	    formattedJson = formattedJson.concat(JSON.stringify(response.result, null, 2));
+    document.getElementById('query-output').value = formattedJson;
+  
   }
 
   function displayResults(response) {
