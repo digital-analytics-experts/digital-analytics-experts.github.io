@@ -136,8 +136,8 @@
   
   if(uniquePageViews > transactions)
 	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
-  // else
-	// document.getElementById('query-output').value = "No errors on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
+  else
+	document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
 
   
   
