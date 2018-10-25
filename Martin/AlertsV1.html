@@ -130,8 +130,8 @@
   {
   console.log("process");
   
-  var uniquePageViews = response.report[0].data.totals[0].value[0];
-  var transactions = response.report[0].data.totals[0].value[1];
+  var uniquePageViews = response.report[0].data.rows[0]; // totals[0].value[0];
+  var transactions = response.report[0].data.rows[0]; // totals[0].value[1];
   
   if(uniquePageViews > transactions)
 	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
