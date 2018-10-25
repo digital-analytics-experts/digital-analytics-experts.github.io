@@ -25,6 +25,7 @@
   var year = dateRange.getFullYear();
   var month = dateRange.getMonth();
   var day = dateRange.getDate();
+  var table = ['<table>'];
   
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
 
@@ -37,8 +38,6 @@
   }
   
   function transactions_alerts() {
-  
-  var table = ['<table>'];
   
   table.push( ('<tr><th>'), "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions", ('</th></tr>'));
   
@@ -144,7 +143,7 @@
   
   if(uniquePageViews > transactions)
   {
-    table.push( '<tr><th>', viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions('</th></tr>'));
+    table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	}
 	// document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
   // else
