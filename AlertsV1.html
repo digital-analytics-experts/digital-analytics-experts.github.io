@@ -38,6 +38,7 @@
   
   function transactions_alerts() {
   
+  output.push('<h3>All Rows Of Data</h3>');
   var table = ['<table>'];
   
   table.push( '<tr><th>', "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions"('</th></tr>'));
@@ -132,6 +133,7 @@
     }).then(process, console.error.bind(console));
 	}
 	table.push('</table>');
+	output.push(table.join(''));
   }
   
   function process(response)
@@ -143,8 +145,9 @@
   var viewID = ID;
   
   if(uniquePageViews > transactions)
+  {
     table.push( '<tr><th>', viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions('</th></tr>'));
-	
+	}
 	// document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
   // else
 	// document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
@@ -153,7 +156,7 @@
   
   
   
-  `
+  
   /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
 	    formattedJson = formattedJson + formattedJsontmp;
     document.getElementById('query-output').value = formattedJson; */
