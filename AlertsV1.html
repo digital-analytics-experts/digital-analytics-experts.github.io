@@ -122,21 +122,22 @@
           }
         ]
       }
-    }).then(process, console.error.bind(console));
+    }).then(process, VIEW_ID, console.error.bind(console));
 	// }
   }
   
-  function process(response)
+  function process(response, ID)
   {
   console.log("process");
   
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
-  var transactions = response.result.reports[0].data.totals[0].valueS[1];
+  var transactions = response.result.reports[0].data.totals[0].values[1];
+  var viewID = ID;
   
   if(uniquePageViews > transactions)
-	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
-  else
-	document.getElementById('query-output').value = "No errors on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
+	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
+  // else
+	// document.getElementById('query-output').value = "No errors on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
 
   
   
