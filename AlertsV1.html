@@ -142,9 +142,9 @@
   var viewID = ID;
   
   if(uniquePageViews > transactions)
-  {
     table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
-	}
+  else
+	table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	// document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
   // else
 	// document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
