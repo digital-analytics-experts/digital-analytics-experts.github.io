@@ -130,13 +130,13 @@
   {
   console.log("process");
   
-  var uniquePage = report[0].data.totals[0].value[0];
-  var transactions = report[0].data.totals[0].value[1];
+  var uniquePageViews = response.report[0].data.totals[0].value[0];
+  var transactions = response.report[0].data.totals[0].value[1];
   
   if(uniquePageViews > transactions)
-	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePage+ " unique order confirmation page views and "+transactions+ " transactions reported";
+	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
   else
-	document.getElementById('query-output').value = "No errors on transaction page: "+uniquePage+ " unique order confirmation page views and "+transactions+ " transactions reported";
+	document.getElementById('query-output').value = "No errors on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
   
   
   
