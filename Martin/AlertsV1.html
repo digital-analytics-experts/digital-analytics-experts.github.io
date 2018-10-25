@@ -130,7 +130,7 @@
   {
   console.log("process");
   
-  var uniquePageViews = response.result.reports[0].data.rows[0]; // totals[0].value[0];
+  /* var uniquePageViews = response.result.reports[0].data.rows[0]; // totals[0].value[0];
   var transactions = response.result.reports[0].data.totals[0].value[1];
   
   if(uniquePageViews > transactions)
@@ -143,12 +143,12 @@
   
   
   
+  */
   
-  
-  /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
+  var formattedJsontmp = JSON.stringify(response.result, null, 2);
 	    formattedJson = formattedJson + formattedJsontmp;
-    document.getElementById('query-output').value = formattedJson; */
-  
+    document.getElementById('query-output').value = formattedJson;
+ 
   }
 </script>
 
