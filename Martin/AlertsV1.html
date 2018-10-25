@@ -18,7 +18,8 @@
 
 <script>
   // Replace with your view ID.
-  var VIEW_ID = '15753540'; ["15753450", "15753540", "19209080"];
+  var VIEW_ID = ["15753450", "15753540", "19209080"];
+  var ID;
   var formattedJson = "";
   var dateRange = new Date();
   var year = dateRange.getFullYear();
@@ -37,8 +38,14 @@
   
   function transactions_alerts() {
   
-  // for(i = 0; i< VIEW_ID.length; i++)
-  // {
+  var table = ['<table>'];
+  
+  table.push( '<tr><th>', "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions"('</th></tr>');
+  
+  for(i = 0; i< VIEW_ID.length; i++)
+  {
+  
+  ID = VIEW_ID[i];
   
   console.log("queryReports");
     gapi.client.request({
@@ -48,7 +55,7 @@
       body: {
         reportRequests: [
           {
-            viewId: VIEW_ID, //[i],
+            viewId: ID, //[i],
 			/* dimensions : [
 			/* {
 				name : 'ga:segment'
@@ -123,7 +130,8 @@
         ]
       }
     }).then(process, console.error.bind(console));
-	// }
+	}
+	table.push('</table>');
   }
   
   function process(response)
@@ -132,18 +140,20 @@
   
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
+  var viewID = ID;
   
   if(uniquePageViews > transactions)
-	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
-  else
-	document.getElementById('query-output').value = "No errors on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported";
+    table.push( '<tr><th>', viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions('</th></tr>'));
+	
+	// document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
+  // else
+	// document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
+  
 
   
   
   
-  
-  
-  
+  `
   /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
 	    formattedJson = formattedJson + formattedJsontmp;
     document.getElementById('query-output').value = formattedJson; */
