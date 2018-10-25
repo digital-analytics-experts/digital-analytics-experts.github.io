@@ -140,6 +140,7 @@
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
+    var table = ['<table>'];
   
   if(uniquePageViews > transactions)
     table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
@@ -149,7 +150,7 @@
   // else
 	// document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
   
-
+table.push('</table>');
   
   
   
