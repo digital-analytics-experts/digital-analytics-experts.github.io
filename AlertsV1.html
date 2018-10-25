@@ -38,7 +38,6 @@
   
   function transactions_alerts() {
   
-  output.push('<h3>All Rows Of Data</h3>');
   var table = ['<table>'];
   
   table.push( '<tr><th>', "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions"('</th></tr>'));
@@ -133,7 +132,6 @@
     }).then(process, console.error.bind(console));
 	}
 	table.push('</table>');
-	output.push(table.join(''));
   }
   
   function process(response)
