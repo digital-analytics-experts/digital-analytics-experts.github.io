@@ -122,17 +122,17 @@
           }
         ]
       }
-    }).then(process, console.error.bind(console), VIEW_ID);
+    }).then(process, console.error.bind(console));
 	// }
   }
   
-  function process(response, ID)
+  function process(response)
   {
   console.log("process");
   
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
-  var viewID = ID;
+  var viewID = response.result.viewId;
   
   if(uniquePageViews > transactions)
 	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
