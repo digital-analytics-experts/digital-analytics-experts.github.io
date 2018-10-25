@@ -133,11 +133,11 @@
           }
         ]
       }
-    }).then(process(response, ID), console.error.bind(console));
+    }).then(process, console.error.bind(console));
 	}
   }
   
-  function process(response, ID)
+  function process(response)
   {
   console.log("process");
   
