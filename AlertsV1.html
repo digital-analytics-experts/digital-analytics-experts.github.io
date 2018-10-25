@@ -25,10 +25,15 @@
   var year = dateRange.getFullYear();
   var month = dateRange.getMonth();
   var day = dateRange.getDate();
-  var table = ['<table>'];
   
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
 
+  
+    var x = document.createElement("TABLE");
+    x.setAttribute("id", "transactionsTable");
+    document.body.appendChild(x);
+  
+  
   // Query the API and print the results to the page.
   function queryReports() {
 	transactions_alerts();
@@ -140,19 +145,31 @@
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
-    var table = ['<table>'];
   
   if(uniquePageViews > transactions)
-    table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
-  else
-	table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
-	// document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
-  // else
-	// document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
-  
-table.push('</table>');
-  
-  
+  {
+    // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
+	
+	var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+    document.getElementById("transactionsTable").appendChild(y);
+
+    var z = document.createElement("TD");
+    var t = document.createTextNode(viewID);
+    z.appendChild(t);
+    document.getElementById("myTr").appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(uniquePageViews);
+    z.appendChild(t);
+    document.getElementById("myTr").appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(transactions);
+    z.appendChild(t);
+    document.getElementById("myTr").appendChild(z);
+	
+	}  
   
   
   /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
