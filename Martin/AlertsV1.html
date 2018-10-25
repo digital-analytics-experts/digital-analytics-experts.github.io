@@ -128,7 +128,15 @@
   
   function process(response)
   {
-  console.log("displarResults");
+  console.log("process");
+  
+  var uniquePage = report[0].data.totals[0].value[0];
+  var transactions = report[0].data.totals[0].value[1];
+  
+  if(uniquePageViews > transactions)
+	document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePage+ " unique order confirmation page views and "+transactions+ " transactions reported";
+  else
+	document.getElementById('query-output').value = "No errors on transaction page: "+uniquePage+ " unique order confirmation page views and "+transactions+ " transactions reported";
   
   
   
@@ -137,13 +145,9 @@
   
   
   
-  
-  
-  
-  
-  var formattedJsontmp = JSON.stringify(response.result, null, 2);
+  /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
 	    formattedJson = formattedJson + formattedJsontmp;
-    document.getElementById('query-output').value = formattedJson;
+    document.getElementById('query-output').value = formattedJson; */
   
   }
 </script>
