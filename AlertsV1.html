@@ -135,7 +135,6 @@
       }
     }).then(process, console.error.bind(console));
 	}
-	table.push('</table>');
   }
   
   function process(response)
@@ -155,7 +154,7 @@
     document.getElementById("transactionsTable").appendChild(y);
 
     var z = document.createElement("TD");
-    var t = document.createTextNode(viewID);
+    var t = document.createTextNode(ID);
     z.appendChild(t);
     document.getElementById("myTr").appendChild(z);
 	
