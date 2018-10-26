@@ -68,10 +68,6 @@
 				name : 'ga:pagePath'
 			}], */
 			
-			dimensions : [{
-				name : 'ga:segment'
-			}],
-			
 			dimensionFilterClauses: [{
 
                           filters: [{
@@ -79,7 +75,17 @@
                               dimension_name: 'ga:pagePath',
                               expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
                           }]
-            }],
+            },
+			{
+
+                          filters: [{
+
+                              dimension_name: 'ga:landingPagePath',
+							  not : 'true',
+                              expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
+                          }]
+            }
+			],
 			
 			/* dimensionFilter: [
 			{
@@ -102,7 +108,7 @@
 			  expression: 'ga:transactions'
 			  }
             ],
-			segments : [
+			/* segments : [
 			{
 				dynamicSegment :
 				{	
@@ -133,7 +139,7 @@
 					}
 				}
 			}
-			]
+			] */
           }
         ]
       }
