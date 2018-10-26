@@ -75,8 +75,8 @@
                               dimension_name: 'ga:pagePath',
                               expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
                           }]
-            },
-			{
+            }],
+			/* {
 
                           filters: [{
 
@@ -85,7 +85,7 @@
                               expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
                           }]
             }
-			],
+			], */
 			
 			/* dimensionFilter: [
 			{
@@ -155,7 +155,7 @@
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
   
-  if(uniquePageViews > transactions)
+  // if(uniquePageViews > transactions)
   {
     // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	
@@ -181,9 +181,9 @@
 	}  
   
   
-  var formattedJsontmp = JSON.stringify(response.result, null, 2);
+  /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
 	    formattedJson = formattedJson + formattedJsontmp;
-    document.getElementById('query-output').value = formattedJson;
+    document.getElementById('query-output').value = formattedJson; */
  
   }
 </script>
