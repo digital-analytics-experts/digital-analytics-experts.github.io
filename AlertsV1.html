@@ -154,8 +154,9 @@
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
+  var errorRate = transactions/100 * uniquePageViews;
   
-  // if(uniquePageViews > transactions)
+  if(uniquePageViews > transactions)
   {
     // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	
@@ -175,6 +176,11 @@
 	
 	var z = document.createElement("TD");
     var t = document.createTextNode(transactions);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(errorRate);
     z.appendChild(t);
     y.appendChild(z);
 	
