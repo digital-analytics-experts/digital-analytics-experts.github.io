@@ -154,7 +154,7 @@
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
-  var errorRate = transactions/100 * uniquePageViews;
+  var errorRate = Math.round(100-(100/uniquepageviews * transactions));
   
   if(uniquePageViews > transactions)
   {
