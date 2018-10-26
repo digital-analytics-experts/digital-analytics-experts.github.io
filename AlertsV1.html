@@ -156,7 +156,7 @@
   var viewID = ID;
   var errorRate = Math.round(100-(100/uniquePageViews * transactions));
   
-  if(errorRate < 95)
+  if(errorRate > 5)
   {
     // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	
