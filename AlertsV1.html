@@ -154,9 +154,9 @@
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
-  var errorRate = Math.round(100-(100/uniquepageviews * transactions));
+  var errorRate = Math.round(100-(100/uniquePageViews * transactions));
   
-  if(uniquePageViews > transactions)
+  if(errorRate < 95)
   {
     // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	
