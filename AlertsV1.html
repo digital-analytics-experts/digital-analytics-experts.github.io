@@ -60,9 +60,7 @@
   
     var x = document.createElement("TABLE");
     x.setAttribute("id", "transactionsTable");
-    document.body.appendChild(x);	
-	document.getElementById("transactionsTable").style.visibility="hidden";
-  
+    document.body.appendChild(x);
   
   // Query the API and print the results to the page.
   function queryReports() {
@@ -73,6 +71,8 @@
   }
   
   function transactions_alerts() {
+  
+	document.getElementById("transactionsTable").style.visibility="hidden";
 
   	var y = document.createElement("TR");
     y.setAttribute("id", "myTr");
