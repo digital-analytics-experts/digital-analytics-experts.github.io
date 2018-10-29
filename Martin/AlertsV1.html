@@ -21,10 +21,19 @@
   var VIEW_ID = ["15753450", "15753540", "19209080"];
   var ID;
   var formattedJson = "";
-  var dateRange = new Date()-2;
+  var dateRange = new Date();
   var year = dateRange.getFullYear();
   var month = dateRange.getMonth()+1;
+  var dayPrevious = dateRange.getDate()-2;
   var day = dateRange.getDate();
+  
+  if(dayPrevious > day)
+  {
+	if(month == 1)
+		month = 12;
+	else
+		month - 1;
+	}
   
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
 
@@ -184,7 +193,7 @@
     z.appendChild(t);
     y.appendChild(z);
 	
-		var z = document.createElement("TD");
+	var z = document.createElement("TD");
     var t = document.createTextNode(dateRange);
     z.appendChild(t);
     y.appendChild(z);
