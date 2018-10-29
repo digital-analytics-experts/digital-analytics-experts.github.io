@@ -72,9 +72,27 @@
   }
   
   function transactions_alerts() {
-  
-  table.push( ('<tr><th><b>'), "View ID", ('</th><th><b>'), "Unique Page Views", ('</th><th><b>'), "Transactions", ('</th><th><b>'), "Error Rate", ('</b></th></tr>'));
-  
+
+    var z = document.createElement("TD");
+    var t = document.createTextNode("View ID");
+    z.appendChild(t);
+    y.appendChild(z); // document.getElementById("myTr").appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Unique Page Views);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Transactions");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Error Rate");
+    z.appendChild(t);
+    y.appendChild(z);
+	
   for(i = 0; i< eCommerce_VIEW_ID.length; i++)
   {
   
@@ -186,9 +204,7 @@
   var errorRate = Math.round(100-(100/uniquePageViews * transactions));
   
   if(errorRate >= 20)
-  {
-    // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
-	
+  {	
 	var y = document.createElement("TR");
     y.setAttribute("id", "myTr");
     document.getElementById("transactionsTable").appendChild(y);
