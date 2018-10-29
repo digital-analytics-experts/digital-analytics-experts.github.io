@@ -23,16 +23,35 @@
   var formattedJson = "";
   var dateRange = new Date();
   var year = dateRange.getFullYear();
+  var yearStart = dateRange.getFullYear();
+  var yearEnd = dateRange.getFullYear();
   var month = dateRange.getMonth()+1;
-  var dayPrevious = dateRange.getDate()-2;
+  var monthStart = dateRange.getMonth()+1;
+  var monthEnd = dateRange.getMonth()+1;
+  var dayStart = dateRange.getDate()-2;
+  var dayEnd = dateRange.getDate()-1;
   var day = dateRange.getDate();
   
-  if(dayPrevious > day)
+  if(dayStart > day)
   {
-	if(month == 1)
-		month = 12;
+	if(monthStart == 1)
+	{
+		monthStart = 12;
+		yearStart -1;
+		}
 	else
 		month - 1;
+	}
+	
+	if(dayEnd > day)
+  {
+	if(monthEnd == 1)
+	{
+		monthEnd = 12;
+		yearEnd - 1;
+		}
+	else
+		monthEnd - 1;
 	}
   
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
@@ -105,8 +124,8 @@
 			
             dateRanges: [
               {
-                startDate: '2018-10-23', // year+"-"+month+"-"+day,
-                endDate: '2018-10-23' // year+"-"+month+"-"+day
+                startDate: yearStart+"-"+monthStart+"-"+dayStart, // year+"-"+month+"-"+day,
+                endDate: yearEnd+"-"+monthEnd+"-"+dayEnd // year+"-"+month+"-"+day
               }
             ],
             metrics: [
@@ -194,7 +213,12 @@
     y.appendChild(z);
 	
 	var z = document.createElement("TD");
-    var t = document.createTextNode(year+" "+month+" "+dayPrevious);
+    var t = document.createTextNode(yearStart+"-"+monthStart+"-"+dayStart);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(yearEnd+"-"+monthEnd+"-"+dayEnd);
     z.appendChild(t);
     y.appendChild(z);
 	
