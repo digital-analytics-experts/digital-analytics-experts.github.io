@@ -19,6 +19,7 @@
 <script>
   // Replace with your view ID.
   var VIEW_ID = ["15753450", "15753540", "19209080"];
+  var eCommerce_VIEW_ID = ["15754501","15753659","15753684","21379335","19209080","15754096","15753718","15754168","60583535","15753540","15754187","15754211","15753748","15753450","15754231","15754231","113792823","67600506","15753547","15754246","113830101","15753993","171584418","15754005","24708679","131571220","24708847","33517254","15754036","15754319","15753699","15754330","15754345","15754364","15754524","15754060","15754048","15753478","24709298"];
   var ID;
   var formattedJson = "";
   var dateRange = new Date();
@@ -37,7 +38,7 @@
 	if(monthStart == 1)
 	{
 		monthStart = 12;
-		yearStart -1;
+		yearStart - 1;
 		}
 	else
 		month - 1;
@@ -74,10 +75,10 @@
   
   // table.push( ('<tr><th>'), "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions", ('</th></tr>'));
   
-  for(i = 0; i< VIEW_ID.length; i++)
+  for(i = 0; i< eCommerce_VIEW_ID.length; i++)
   {
   
-  ID = VIEW_ID[i];
+  ID = eCommerce_VIEW_ID[i];
   
   console.log("queryReports");
     gapi.client.request({
@@ -212,7 +213,7 @@
     z.appendChild(t);
     y.appendChild(z);
 	
-	var z = document.createElement("TD");
+	/* var z = document.createElement("TD");
     var t = document.createTextNode(yearStart+"-"+monthStart+"-"+dayStart);
     z.appendChild(t);
     y.appendChild(z);
@@ -220,7 +221,7 @@
 	var z = document.createElement("TD");
     var t = document.createTextNode(yearEnd+"-"+monthEnd+"-"+dayEnd);
     z.appendChild(t);
-    y.appendChild(z);
+    y.appendChild(z); */
 	
 	}  
   
