@@ -73,7 +73,7 @@
   
   function transactions_alerts() {
   
-  // table.push( ('<tr><th>'), "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions", ('</th></tr>'));
+  table.push( ('<tr><th><b>'), "View ID", ('</th><th><b>'), "Unique Page Views", ('</th><th><b>'), "Transactions", ('</th><th><b>'), "Error Rate", ('</b></th></tr>'));
   
   for(i = 0; i< eCommerce_VIEW_ID.length; i++)
   {
@@ -185,7 +185,7 @@
   var viewID = ID;
   var errorRate = Math.round(100-(100/uniquePageViews * transactions));
   
-  if(errorRate > 5)
+  if(errorRate >= 20)
   {
     // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	
