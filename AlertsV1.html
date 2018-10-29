@@ -208,9 +208,7 @@
   var viewID = ID;
   var errorRate = Math.round(100-(100/uniquePageViews * transactions));
   
-  document.getElementById("transactionsTable").style.visibility="visible";
-  
-  if(errorRate >= 20)
+  if(errorRate >= 5)
   {	
 	document.getElementById("transactionsTable").style.visibility="visible";
   
