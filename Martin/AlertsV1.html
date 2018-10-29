@@ -21,13 +21,19 @@
   var VIEW_ID = ["15753450", "15753540", "19209080"];
   var ID;
   var formattedJson = "";
-  var dateRange = new Date();
+  var dateRange = new Date()-2;
   var year = dateRange.getFullYear();
-  var month = dateRange.getMonth();
+  var month = dateRange.getMonth()+1;
   var day = dateRange.getDate();
   
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
 
+  
+    var x = document.createElement("TABLE");
+    x.setAttribute("id", "transactionsTable");
+    document.body.appendChild(x);
+  
+  
   // Query the API and print the results to the page.
   function queryReports() {
 	transactions_alerts();
@@ -38,10 +44,7 @@
   
   function transactions_alerts() {
   
-  output.push('<h3>All Rows Of Data</h3>');
-  var table = ['<table>'];
-  
-  table.push( '<tr><th>', "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions"('</th></tr>'));
+  // table.push( ('<tr><th>'), "View ID", ('</th><th>'), "Unique Page Views", ('</th><th>'), "Transactions", ('</th></tr>'));
   
   for(i = 0; i< VIEW_ID.length; i++)
   {
@@ -73,6 +76,16 @@
                               expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
                           }]
             }],
+			/* {
+
+                          filters: [{
+
+                              dimension_name: 'ga:landingPagePath',
+							  not : 'true',
+                              expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
+                          }]
+            }
+			], */
 			
 			/* dimensionFilter: [
 			{
@@ -112,9 +125,9 @@
 									{
 										dimensionFilter :
 										{
-											dimensionName : 'ga:pageTitle',
-											operator : 'REGEXP',
-											expressions : ['order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
+											dimensionName : 'ga:landingPagePath',
+											// not : 'true',
+											expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
 											}
 									}
 									]
@@ -130,32 +143,55 @@
           }
         ]
       }
-    }).then(process, console.error.bind(console));
+    }).then(process.bind(null, ID)); //.then(process, console.error.bind(console)); 
 	}
-	table.push('</table>');
-	output.push(table.join(''));
   }
   
-  function process(response)
+  function process(ID, response)
   {
   console.log("process");
   
   var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
   var transactions = response.result.reports[0].data.totals[0].values[1];
   var viewID = ID;
+  var errorRate = Math.round(100-(100/uniquePageViews * transactions));
   
-  if(uniquePageViews > transactions)
-    table.push( '<tr><th>', viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions('</th></tr>'));
+  if(errorRate > 5)
+  {
+    // table.push( ('<tr><th>'), viewID, ('</th><th>'), uniquePageViews, ('</th><th>'), transactions,('</th></tr>'));
 	
-	// document.getElementById('query-output').value = "Possible error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
-  // else
-	// document.getElementById('query-output').value = "No error on transaction page: "+uniquePageViews+ " unique order confirmation page views and "+transactions+ " transactions reported on View ID: " + viewID;
-  
+	var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+    document.getElementById("transactionsTable").appendChild(y);
 
+    var z = document.createElement("TD");
+    var t = document.createTextNode(viewID);
+    z.appendChild(t);
+    y.appendChild(z); // document.getElementById("myTr").appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(uniquePageViews);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(transactions);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(errorRate);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+		var z = document.createElement("TD");
+    var t = document.createTextNode(dateRange);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	}  
   
   
-  
-  `
   /* var formattedJsontmp = JSON.stringify(response.result, null, 2);
 	    formattedJson = formattedJson + formattedJsontmp;
     document.getElementById('query-output').value = formattedJson; */
