@@ -51,7 +51,7 @@ form {
 <h1>Google Analytics Alerts API</h1>
 
 <!-- The Sign-in button. This will run `queryReports()` on success. -->
-<p class="g-signin2" align="center" data-onsuccess="set"></p>
+<p class="g-signin2" align="center"></p>
 
 <div id="Alerts">
 <p id="p1">Below is the list of Google Analytics alerts. The results will display any alerts, split by market. Please check the field values and click 'submit' to run the Alerts.</p>
@@ -119,8 +119,10 @@ form {
   var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
   
   // set all alert results elements hidden
-  document.getElementById("transactionsTable").style.visibility="hidden";
-  document.getElementById("transactionsReferrerTable").style.visibility="hidden";
+	document.getElementById("transactionsReferrerTable").style.visibility="hidden";
+	document.getElementById("transactionsReferrerDescription").style.visibility="hidden";
+	document.getElementById("transactionsTable").style.visibility="hidden";
+	document.getElementById("transactionsDescription").style.visibility="hidden";
   
   // Query the API and print the results to the page.
   function queryReports() {
