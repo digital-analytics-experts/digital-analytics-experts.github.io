@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Google Analytics Alerts API V1</title>
+  <meta name="google-signin-client_id" content="733015638140-da8nkpm0rj9qtnvogslciginfcv3631a.apps.googleusercontent.com">
+  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+  
+  <style>
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    text-align: center;
+	font-family: verdana;
+    font-size: 20px;
+}
+
+h2 {
+    text-align: left;
+	font-family: verdana;
+    font-size: 18px;
+}
+
+#div1, #p1 {
+    font-family: verdana;
+    font-size: 12px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	padding: 5px;
+	border-spacing: 5px;
+	font-family: verdana;
+    font-size: 10px;
+}
+
+form {
+    font-family: verdana;
+    font-size: 12px;
+}
+</style>
+  
+  
+  
+</head>
+<body>
+
+<h1>Google Analytics Alerts API</h1>
+
+<!-- The Sign-in button. This will run `queryReports()` on success. -->
+<p class="g-signin2" align="center" data-onsuccess="set"></p>
+
+<div id="Alerts">
+<p id="p1">Below is the list of Google Analytics alerts. The results will display any alerts, split by market. Please check the field values and click 'submit' to run the Alerts.</p>
+</div>
+
+<form id="update-button" action="javascript:void(0);">
+  Enter lookback window (days): <input type="number" name="days" min="1" value="2" style="width: 3em"> <input type="submit" value="Submit"> <input type="reset" value="Reset">
+  
+<h2>Transactions Alert</h2>
+<p id="p1">This alert checks the number of transactions against the number of unique order confirmation page views. Discrepancies could indicate possible conversion tracking or data layer error(s).</p>
+  Enter the allowable maximum error rate threshold before an alert is triggered (%): <input type="number" name="transactionsError" min="1" value="20" style="width: 3em"><br />
+  Enter the minimum number of page views to be considered before an alert is triggered: <input type="number" name="transactionsConversions" min="1" value="50" style="width: 3em"><br />
+  
+<h2>Referrer Alert</h2>
+<p id="p1">This alert checks the number of transactions against the number of unique landings on the order confirmation page(s). The purpose of the alert is to check for any self-referral issues, such as from payment gateways.</p>
+  Enter the allowable maximum error rate threshold before an alert is triggered (%): <input type="number" name="referrerError" min="1" value="10" style="width: 3em"><br />
+  Enter the minimum number of transactions to be considered before an alert is triggered: <input type="number" name="referrerTransactions" min="1" value="50" style="width: 3em"><br />
+</form>
+
+<div id="Results" >
+<h2>Results</h2>
+</div>
+
+<div id="div1" >
+</div>
+
+<div id="transactionsDescription">
+<p id="p1"><b>Transactions Alert: </b>Below are the View IDs where the number of transactions is lower than expected against the number of unique page views on the order confirmation page. There could be an issue with the values being passed to the dataLayer, or the tag not firing on the page.</p>
+</div>
+
+<div id="transactionsTable">
+</div>
+
+<div id="transactionsReferrerDescription">
+<p id="p1"><b>Referrer Alert: </b>Below are the View IDs with sessions where users landed on the payment confirmation page and a successful transaction was made, indicating a possible self-referrer issue.</p>
+</div>
+
+<div id="transactionsReferrerTable">
+</div>
+
+<script>
+  var days = 2;
+  var transactionsError = 20;
+  var transactionsConversions = 50;
+  var referrerError = 10;
+  var referrerTransactions = 50;
+
+  // var eCommerce_VIEW_ID = ["15753450", "15753540", "19209080"];
+  var eCommerce_VIEW_ID = ["15754501","15753659","15753684","21379335","19209080","15754096","15753718","15754168","60583535","15753540","15754187","15754211","15753748","15753450","15754231","15754231","113792823","67600506","15753547","15754246","113830101","15753993","171584418","15754005","24708679","131571220","24708847","33517254","15754036","15754319","15753699","15754330","15754345","15754364","15754524","15754060","15754048","15753478","24709298"];
+  var ID;
+  var formattedJson = "";
+  var alertTransactions = false;
+  var alertReferrals = false;
+  var dateStart = new Date();
+  // dateStart.setDate(-days);
+  var dateEnd = new Date();
+  // dateEnd.setDate(0);  
+  var yearStart = dateStart.getFullYear();
+  var yearEnd = dateEnd.getFullYear();
+  var monthStart = dateStart.getMonth() +1;
+  var monthEnd = dateEnd.getMonth() +1;
+  var dayStart = dateStart.getDate();
+  var dayEnd = dateEnd.getDate();
+  
+  var pageTitle = new RegExp('\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation');
+  
+  // set all alert results elements hidden
+  document.getElementById("transactionsTable").style.visibility="hidden";
+  document.getElementById("transactionsReferrerTable").style.visibility="hidden";
+  
+  // Query the API and print the results to the page.
+  function queryReports() {
+  
+  transactions_alerts();
+  setTimeout(layout, 3000);
+  
+  }
+  
+  function set()
+  {
+  	// Transactions table
+	
+	var Table = document.getElementById("transactionsTable");
+	Table.innerHTML = "";
+	
+	var Table = document.getElementById("transactionsReferrerTable");
+	Table.innerHTML = "";
+	
+	document.getElementById("transactionsReferrerTable").style.visibility="hidden";
+	document.getElementById("transactionsReferrerDescription").style.visibility="hidden";
+	document.getElementById("transactionsTable").style.visibility="hidden";
+	document.getElementById("transactionsDescription").style.visibility="hidden";
+  
+  	var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+	y.style.fontWeight = "900";
+    document.getElementById("transactionsTable").appendChild(y);
+  
+    var z = document.createElement("TD");
+    var t = document.createTextNode("View ID");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Unique Page Views");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Transactions");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Error Rate (%)");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	// Self-Referrer table
+	
+	var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+	y.style.fontWeight = "900";
+    document.getElementById("transactionsReferrerTable").appendChild(y);
+  
+    var z = document.createElement("TD");
+    var t = document.createTextNode("View ID");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Transactions");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Order Confirmation Page Landings");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Error Rate (%)");
+    z.appendChild(t);
+    y.appendChild(z);
+  }
+    
+  function transactions_alerts() {
+  
+  for(i = 0; i< eCommerce_VIEW_ID.length; i++)
+  {
+  
+  ID = eCommerce_VIEW_ID[i];
+  
+  console.log("queryReports");
+    gapi.client.request({
+      path: '/v4/reports:batchGet',
+      root: 'https://analyticsreporting.googleapis.com/',
+      method: 'POST',
+      body: {
+        reportRequests: [
+          {
+            viewId: ID,
+			
+			dimensionFilterClauses: [{
+
+                          filters: [{
+
+                              dimension_name: 'ga:pagePath',
+                              expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
+                          }]
+            }],
+			
+            dateRanges: [
+              {
+                startDate: yearStart+"-"+monthStart+"-"+dayStart,
+                endDate: yearEnd+"-"+monthEnd+"-"+dayEnd
+              }
+            ],
+            metrics: [
+              {
+                expression: 'ga:uniquePageviews'
+              },
+			  {
+			  expression: 'ga:transactions'
+			  }
+            ],
+          },
+		            {
+            viewId: ID,
+			
+			dimensionFilterClauses: [{
+
+                          filters: [{
+
+                              dimension_name: 'ga:landingPagePath',
+							  not : 'false',
+                              expressions: ['\/onepage\/success|order-confirmation|shop\/thankyou|\/potvrzeni|\/checkout\/success|orderconfirmation|\/confirmation-commande|\/confirmation-de-votre-commande|\/checkout\/confirmation']
+                          }]
+            }
+			],
+			
+            dateRanges: [
+              {
+                startDate: yearStart+"-"+monthStart+"-"+dayStart,
+                endDate: yearEnd+"-"+monthEnd+"-"+dayEnd
+              }
+            ],
+            metrics: [
+			  {
+			  expression: 'ga:transactions'
+			  }
+            ],
+          }
+        ]
+      }
+    }).then(process.bind(null, ID));
+	}
+  }
+  
+  function process(ID, response)
+  {
+  console.log("process");
+  
+  var uniquePageViews = response.result.reports[0].data.totals[0].values[0];
+  var transactions = response.result.reports[0].data.totals[0].values[1];
+  var viewID = ID;
+  var errorRate = Math.round(100-(100/uniquePageViews * transactions));
+  var uniqueLandingPageViews = response.result.reports[1].data.totals[0].values[0];
+  var errorRateLandings = Math.round(100/transactions * uniqueLandingPageViews);
+  
+  if(errorRate >= transactionsError && uniquePageViews >= transactionsConversions)
+	{	
+	alertTransactions = true;
+	
+	document.getElementById("transactionsTable").style.visibility="visible";
+	document.getElementById("transactionsDescription").style.visibility="visible";
+  
+	var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+    document.getElementById("transactionsTable").appendChild(y);
+
+    var z = document.createElement("TD");
+    var t = document.createTextNode(viewID);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(uniquePageViews);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(transactions);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(errorRate);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	}  
+  
+    if(errorRateLandings >= referrerError && transactions >= referrerTransactions)
+	{	
+	alertReferrals = true;
+	
+	document.getElementById("transactionsReferrerTable").style.visibility="visible";
+	document.getElementById("transactionsReferrerDescription").style.visibility="visible";
+  
+	var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+    document.getElementById("transactionsReferrerTable").appendChild(y);
+
+    var z = document.createElement("TD");
+    var t = document.createTextNode(viewID);
+    z.appendChild(t);
+    y.appendChild(z); 
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(transactions);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(uniqueLandingPageViews);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode(errorRateLandings);
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	}
+ 
+  }
+  
+  function confirmAction(event)
+  {
+	set();
+  
+	alertTransactions = false;
+	alertReferrals = false;
+	document.getElementById('div1').innerHTML = "";
+  
+	days = document.forms["update-button"]["days"].value;
+	transactionsError = document.forms["update-button"]["transactionsError"].value;
+	transactionsConversions = document.forms["update-button"]["transactionsConversions"].value;
+	referrerError = document.forms["update-button"]["referrerError"].value;
+	referrerTransactions = document.forms["update-button"]["referrerTransactions"].value;
+	
+	referrerTransactions = parseInt(referrerTransactions);
+	transactionsConversions = parseInt(transactionsConversions);
+	
+	dateStart = new Date();
+	dateStart.setDate(dateStart.getDate() - days);
+  
+    dayStart = dateStart.getDate();
+	monthStart = dateStart.getMonth() +1;
+	yearStart = dateStart.getFullYear();
+	
+	var startD = yearStart+"-"+monthStart+"-"+dayStart;
+    var endD = yearEnd+"-"+monthEnd+"-"+dayEnd;
+	console.log("start date: " + startD);
+	console.log("end date: " + endD);
+	
+	queryReports();
+  }
+  
+  function layout()
+  {
+	
+	if(alertReferrals == false)
+	{
+		// var el = document.getElementById('transactionsReferrerTable');
+		// el.remove();
+		// document.getElementById("transactionsReferrerTable").style.visibility="hidden";
+		// document.getElementById("transactionsReferrerDescription").style.visibility="hidden";
+		var text = document.getElementById('div1').innerHTML;
+		document.getElementById('div1').innerHTML = text+"<b>Referrer Alert: </b>No major self-refferal issues found on order confirmation pages.<br />";
+	}
+	
+	if(alertTransactions == false)
+	{
+		// var el = document.getElementById('transactionsTable');
+		// el.remove();
+		// document.getElementById("transactionsTable").style.visibility="hidden";
+		// document.getElementById("transactionsDescription").style.visibility="hidden";
+		var text = document.getElementById('div1').innerHTML;
+		document.getElementById('div1').innerHTML = text+"<b>Transactions Alert: </b>No major issues found with eCommerce tags firing.<br />";
+	}
+	
+	// if(alertReferrals == false && alertTransactions == false)
+		// document.getElementById('div1').innerHTML = "<b>Transactions Alert: </b>No major issues found with eCommerce tags firing.<br /><b>Referral Alert: </b>No major self-refferal issues found on order confirmation pages.";
+  
+  }
+  
+  document.getElementById('update-button').addEventListener('submit', confirmAction);
+</script>
+
+<!-- Load the JavaScript API client and Sign-in library. -->
+<script src="https://apis.google.com/js/client:platform.js"></script>
+
+</body>
+</html>
