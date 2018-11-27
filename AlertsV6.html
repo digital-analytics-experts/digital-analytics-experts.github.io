@@ -374,11 +374,6 @@ form {
     y.appendChild(z);
 	
 	var z = document.createElement("TD");
-    var t = document.createTextNode();
-    z.appendChild(t);
-    y.appendChild(z);
-	
-	var z = document.createElement("TD");
     var t = document.createTextNode("n/a");
     z.appendChild(t);
     y.appendChild(z);
@@ -410,6 +405,9 @@ form {
     dayStart = dateStart.getDate();
 	monthStart = dateStart.getMonth() +1;
 	yearStart = dateStart.getFullYear();
+	
+	dayStart = (dayStart < 10 ? '0' : '') + dayStart;
+	dayEnd = (dayEnd < 10 ? '0' : '') + dayEnd;
 	
 	var startD = yearStart+"-"+monthStart+"-"+dayStart;
     var endD = yearEnd+"-"+monthEnd+"-"+dayEnd;
