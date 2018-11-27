@@ -108,7 +108,7 @@ form {
   var dateStart = new Date();
   // dateStart.setDate(-days);
   var dateEnd = new Date();
-  // dateEnd.setDate(0);  
+  dateEnd.setDate(dateStart.getDate() - 1); 
   var yearStart = dateStart.getFullYear();
   var yearEnd = dateEnd.getFullYear();
   var monthStart = dateStart.getMonth() +1;
@@ -128,7 +128,7 @@ form {
   function queryReports() {
   
   transactions_alerts();
-  setTimeout(layout, 3000);
+  setTimeout(layout, 5000);
   
   }
   
@@ -172,6 +172,11 @@ form {
     z.appendChild(t);
     y.appendChild(z);
 	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Notes");
+    z.appendChild(t);
+    y.appendChild(z);
+	
 	// Self-Referrer table
 	
 	var y = document.createElement("TR");
@@ -196,6 +201,11 @@ form {
 	
 	var z = document.createElement("TD");
     var t = document.createTextNode("Error Rate (%)");
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("Notes");
     z.appendChild(t);
     y.appendChild(z);
   }
@@ -314,8 +324,23 @@ form {
     var t = document.createTextNode(errorRate);
     z.appendChild(t);
     y.appendChild(z);
+
+	if(viewID == "15754364")
+	{
+		var z = document.createElement("TD");
+		var t = document.createTextNode("Known issue. Ignore");
+		z.appendChild(t);
+		y.appendChild(z);
+	}
 	
-	}  
+	else
+	{
+		var z = document.createElement("TD");
+		var t = document.createTextNode("n/a");
+		z.appendChild(t);
+		y.appendChild(z);
+	}
+}	
   
     if(errorRateLandings >= referrerError && transactions >= referrerTransactions)
 	{	
@@ -348,6 +373,16 @@ form {
     z.appendChild(t);
     y.appendChild(z);
 	
+	var z = document.createElement("TD");
+    var t = document.createTextNode();
+    z.appendChild(t);
+    y.appendChild(z);
+	
+	var z = document.createElement("TD");
+    var t = document.createTextNode("n/a");
+    z.appendChild(t);
+    y.appendChild(z);
+	
 	}
  
   }
@@ -360,7 +395,7 @@ form {
 	alertReferrals = false;
 	document.getElementById('div1').innerHTML = "";
   
-	days = document.forms["update-button"]["days"].value;
+	days = parseInt(document.forms["update-button"]["days"].value)+1;
 	transactionsError = document.forms["update-button"]["transactionsError"].value;
 	transactionsConversions = document.forms["update-button"]["transactionsConversions"].value;
 	referrerError = document.forms["update-button"]["referrerError"].value;
