@@ -421,8 +421,18 @@ form {
 	monthStart = dateStart.getMonth() +1;
 	yearStart = dateStart.getFullYear();
 	
-	dayStart = (dayStart < 10 ? '0' : '') + dayStart;
-	dayEnd = (dayEnd < 10 ? '0' : '') + dayEnd;
+	if(dayStart.toString().length == 1)
+	{
+		dayStart = (dayStart < 10 ? '0' : '') + dayStart;
+	}
+	
+	if(dayEnd.toString().length == 1)
+	{
+		dayEnd = (dayEnd < 10 ? '0' : '') + dayEnd;
+	}
+		
+	// dayStart = (dayStart < 10 ? '0' : '') + dayStart;
+	// dayEnd = (dayEnd < 10 ? '0' : '') + dayEnd;
 	
 	var startD = yearStart+"-"+monthStart+"-"+dayStart;
     var endD = yearEnd+"-"+monthEnd+"-"+dayEnd;
