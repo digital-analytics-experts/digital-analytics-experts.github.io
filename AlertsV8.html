@@ -430,6 +430,16 @@ form {
 	{
 		dayEnd = (dayEnd < 10 ? '0' : '') + dayEnd;
 	}
+	
+	if(monthStart.toString().length == 1)
+	{
+		monthStart = (monthStart < 10 ? '0' : '') + monthStart;
+	}
+	
+	if(monthEnd.toString().length == 1)
+	{
+		monthEnd = (monthEnd < 10 ? '0' : '') + monthEnd;
+	}
 		
 	// dayStart = (dayStart < 10 ? '0' : '') + dayStart;
 	// dayEnd = (dayEnd < 10 ? '0' : '') + dayEnd;
