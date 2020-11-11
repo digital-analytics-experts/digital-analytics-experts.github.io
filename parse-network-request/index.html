@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+	<script>
+		function parse_str(str)	{
+			var str = str || ""; 
+
+			var url_split = str.split('?');
+			var u_len = url_split.length;
+			var decoded_str = [];
+			var decoded_str_index = 0;
+			var result = [];
+
+			function get_decoded_str_index() {if(u_len > 1)	{
+				if(u_len > 2)	{
+					console.log("Multiple question mark symbols detected; exiting.");
+					return false;
+				}	else	{
+					decoded_str_index = 1;
+				}
+			}
+			};
+			get_decoded_str_index();
+
+			if(decoded_str_index > 0)	{
+				var u = url_split[0].split(/\//);
+				for( v in u)	{
+					result.push(u[v]);
+					console.log("'result' is: " + result);
+				}
+			}
+
+			decoded_str = url_split[decoded_str_index].split('&');
+
+			var indent = 0;
+			var indent_char = "    ";
+			var v = [];
+
+			function indent_increment(num)	{
+				var num = num || 0;
+				return num;
+			}
+
+			for (s in decoded_str) {
+				var t = decoded_str[s];
+				var u = t.split("=");
+				var v = ["", "", indent];
+				var indent_now = t.substr(0,1) == "." ? -1 : 0;
+				var indent_later = t.substr(t.length - 1, 1) == "." ? 1 : 0;
+				if(t.search("=") < 0)	{
+					indent += indent_now;
+					v[0] = indent_char.repeat(indent) + t;
+					indent += indent_later
+					v[2] = indent;
+				} else	{
+					v[0] = indent_char.repeat(indent + indent_now + indent_later) + u[0];
+					v[1] = decodeURIComponent(u[1]);
+				}
+				decoded_str[s] = v;
+			}
+				
+			for (s in decoded_str)	{
+				var t = decoded_str[s];
+				result.push(t[0] + ": " + t[1]);
+					console.log("'result' is: " + result);
+			}
+			var table = document.createElement('table');
+			for (r in result)	{
+				var row = table.insertRow(r);
+				var cell = row.insertCell(0);
+				cell.innerHTML = result[r];
+			}
+			
+			return table;
+		}
+	</script>
+			
+<script>
+function validateForm() {
+    var x = document.getElementById('url').value;
+    if (x == "") {
+        alert("Field cannot be empty");
+        return false;
+    }	else	{
+		var table_html = parse_str(x);
+		document.getElementById('result').innerHTML = "";
+		document.getElementById('result').appendChild(table_html);
+	}
+}
+</script>
+</head>
+<body>
+
+	
+	URL:
+	<input id="url">
+
+	<button type="button" onclick="validateForm()">Submit</button>
+
+
+	
+	<div id="result">
+	</div>
+</body>
+</html>
