@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Code Config</title>
+	<!--#region css  -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<style>
+		html,
+		body {
+			min-height: 100%;
+		}
+
+		body,
+		div,
+		form,
+		input,
+		select,
+		textarea,
+		p {
+			padding: 0;
+			margin: 0;
+			outline: none;
+			font-family: Roboto, Arial, sans-serif;
+			font-size: 14px;
+			color: #666;
+			line-height: 22px;
+		}
+
+		h1 {
+			margin: 15px 0;
+			font-weight: 400;
+		}
+
+		.testbox {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: inherit;
+			padding: 3px;
+		}
+
+		form {
+			width: 100%;
+			padding: 20px;
+			background: #fff;
+			box-shadow: 0 2px 5px #ccc;
+		}
+
+		input,
+		select,
+		textarea {
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+
+		input:hover,
+		select:hover,
+		textarea:hover {
+			outline: none;
+			box-shadow: 0 0 5px 0 #095484;
+		}
+
+		input {
+			width: calc(100% - 10px);
+			padding: 5px;
+		}
+
+		select {
+			width: 100%;
+			padding: 7px 0;
+			background: transparent;
+		}
+
+		textarea {
+			width: calc(100% - 2px);
+			padding: 5px;
+		}
+
+		.item {
+			position: relative;
+			margin: 10px 0;
+		}
+
+		.item:hover p,
+		.item:hover i {
+			color: #095484;
+		}
+
+		input:hover,
+		select:hover,
+		textarea:hover {
+			box-shadow: 0 0 5px 0 #095484;
+		}
+
+		.status:hover input {
+			box-shadow: none;
+		}
+
+		.status label:hover input {
+			box-shadow: 0 0 5px 0 #095484;
+		}
+
+		.status-item input,
+		.status-item span {
+			width: auto;
+			vertical-align: middle;
+		}
+
+		.status-item input {
+			margin: 0;
+		}
+
+		.status-item span {
+			margin: 0 20px 0 5px;
+		}
+
+		input[type="date"]::-webkit-inner-spin-button {
+			display: none;
+		}
+
+		input[type="time"]::-webkit-inner-spin-button {
+			margin: 2px 22px 0 0;
+		}
+
+		.item i,
+		input[type="date"]::-webkit-calendar-picker-indicator {
+			position: absolute;
+			font-size: 20px;
+			color: #a9a9a9;
+		}
+
+		.item i {
+			right: 1%;
+			top: 30px;
+			z-index: 1;
+		}
+
+		[type="date"]::-webkit-calendar-picker-indicator {
+			right: 0;
+			z-index: 2;
+			opacity: 0;
+			cursor: pointer;
+		}
+
+		.btn-block {
+			margin-top: 20px;
+			text-align: center;
+		}
+
+		button {
+			width: auto;
+			padding: 10px;
+			border: none;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			background-color: #095484;
+			font-size: 16px;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #0666a3;
+		}
+
+		@media (min-width: 568px) {
+			.name-item {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+			}
+
+			.name-item input {
+				width: calc(50% - 20px);
+			}
+		}
+	</style>
+	<!--#endregion -->
+	<!--#region js  -->
+	<script>
+		function isBoolean(val) {
+			if (val == "true" | val == "false"){
+				return true
+			} else {
+				return false;
+			}
+		}
+
+		function createCommand(name, val) {
+			var isArray = false;
+			try {
+				val = val.replace(/\s/g, "");
+				// Check if an array already exists
+				var result = document.getElementById('result').value;
+				if (result) {
+					result = JSON.parse(result);
+					isArray = Array.isArray(result);
+				}
+
+				var isValArray = (Array.isArray(val) ? true : false);				
+				var isValInteger = Number.isInteger(parseInt(val));
+				var isValBool = isBoolean(val);
+				if (isValArray) {
+					val = JSON.parse(val);
+				} else if (isValInteger){
+					val = parseInt(val);
+				} else if (isValBool){
+					val = JSON.parse(val);
+				}
+				
+
+
+				if (isArray) {
+					// get existing objects in array then push new one onto those
+					var dlObj = {};
+					dlObj = { [name]: val };
+					result.push(dlObj);
+					document.getElementById('result').value = JSON.stringify(result);
+
+					var cmd = "var data = " + JSON.stringify(result);
+					document.getElementById('cmd1').value = cmd;
+				} else {
+					// create new array
+					var dlArray = [];
+
+					//create object
+					var dlObj = {};
+					dlObj = { [name]: val };
+					dlArray.push(dlObj);
+					document.getElementById('result').value = JSON.stringify(dlArray);
+
+					var cmd = "var data = " + JSON.stringify(dlArray);
+					document.getElementById('cmd1').value = cmd;
+				}
+
+				var str = "_satellite.getVar('Storage Manager').write('sessionStorage', 'page_load_datalayer_storage', JSON.stringify(data))";
+				document.getElementById('cmd2').value = str;
+			} catch(e){
+				alert('Error : ', e);
+			}
+		}
+	</script>
+	<script>
+		function processForm() {
+			var name = document.getElementById('dataLayerName').value;
+			var val = document.getElementById('dataLayerValue').value;
+			if (name == "") {
+				alert("dataLayer Name cannot be empty");
+				return false;
+			} else if (val == "") {
+				alert("dataLayer Value cannot be empty");
+				return false;
+			} else {
+				createCommand(name, val);
+			}
+
+			document.getElementById('dataLayerName').value = "";
+			document.getElementById('dataLayerValue').value = "";
+		}
+	</script>
+	<!--#endregion -->
+</head>
+
+<body>
+	<div class="testbox">
+		<form onsubmit="return false">
+			<div class="item">
+				<p>dataLayer Value Key:</p>
+				<input type="text" name="dataLayerName" id="dataLayerName">
+			</div>
+			<div class="item">
+				<p>dataLayer Value:</p>
+				<textarea rows="10" type="text" id='dataLayerValue' name="dataLayerValue"></textarea>
+			</div>
+			<div class="item">
+				<button onclick="processForm()">Add</button>	
+			</div>
+
+			<hr />
+
+			<div class="item">
+				<p>Result</p>
+				<textarea id="result" rows="6" disabled></textarea>
+			</div>
+			<div class="item">
+				<p>Copy and paste this into your console first.</p>
+				<textarea id="cmd1" rows="6" disabled></textarea>
+			</div>
+			<div class="item">
+				<p>Then enter this to add the data to session storage.</p>
+				<textarea id="cmd2" rows="3" disabled></textarea>				
+			</div>
+			<div class="item">
+				<button onclick="window.location.reload();">Clear</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
