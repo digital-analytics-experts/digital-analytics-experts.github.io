@@ -191,6 +191,12 @@
 			}
 		}
 
+		function copyCmd1(){
+			let textarea = document.getElementById("cmd1");
+			textarea.val.select();
+			document.execCommand("copy");
+		}
+
 		function createCommand(name, val) {
 			var isArray = false;
 			try {
@@ -202,20 +208,27 @@
 					isArray = Array.isArray(result);
 				}
 
-				var isValArray = (Array.isArray(val) ? true : false);				
-				var isValInteger = Number.isInteger(parseInt(val));
-				var isValBool = isBoolean(val);
-				if (isValArray) {
-					val = JSON.parse(val);
-				} else if (isValInteger){
-					val = parseInt(val);
-				} else if (isValBool){
-					val = JSON.parse(val);
-				}
+				
 				
 
 
 				if (isArray) {
+
+					var isValArray = false;
+					try {
+						isValArray = Array.isArray(JSON.parse(parsedVal));
+					} catch (e){}
+
+					var isValInteger = (Number.isInteger(parseInt(val)) ? true : false);
+					var isValBool = (isBoolean(val) ? true : false);
+					if (isValArray) {
+						val = JSON.parse(val);
+					} else if (isValInteger){
+						val = parseInt(val);
+					} else if (isValBool){
+						val = JSON.parse(val);
+					}
+
 					// get existing objects in array then push new one onto those
 					var dlObj = {};
 					dlObj = { [name]: val };
@@ -227,6 +240,21 @@
 				} else {
 					// create new array
 					var dlArray = [];
+					var isValArray = false;
+					
+					try {
+						isValArray = Array.isArray(JSON.parse(parsedVal));
+					} catch (e){}
+
+					var isValInteger = (Number.isInteger(parseInt(val)) ? true : false);
+					var isValBool = (isBoolean(val) ? true : false);
+					if (isValArray) {
+						val = JSON.parse(val);
+					} else if (isValInteger){
+						val = parseInt(val);
+					} else if (isValBool){
+						val = JSON.parse(val);
+					}
 
 					//create object
 					var dlObj = {};
@@ -290,6 +318,9 @@
 			<div class="item">
 				<p>Copy and paste this into your console first.</p>
 				<textarea id="cmd1" rows="6" disabled></textarea>
+			</div>
+			<div>
+				<button id="copyCmd1" onsubmit="copyCmd1()">Copy</button>
 			</div>
 			<div class="item">
 				<p>Then enter this to add the data to session storage.</p>
