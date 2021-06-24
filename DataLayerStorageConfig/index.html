@@ -208,15 +208,11 @@
 					isArray = Array.isArray(result);
 				}
 
-				
-				
-
-
 				if (isArray) {
 
 					var isValArray = false;
 					try {
-						isValArray = Array.isArray(JSON.parse(parsedVal));
+						isValArray = Array.isArray(JSON.parse(result));
 					} catch (e){}
 
 					var isValInteger = (Number.isInteger(parseInt(val)) ? true : false);
@@ -243,7 +239,7 @@
 					var isValArray = false;
 					
 					try {
-						isValArray = Array.isArray(JSON.parse(parsedVal));
+						isValArray = Array.isArray(JSON.parse(val));
 					} catch (e){}
 
 					var isValInteger = (Number.isInteger(parseInt(val)) ? true : false);
