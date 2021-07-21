@@ -26,7 +26,7 @@
 				result.push(u[v]);
 			}
 
-			decoded_str = url_split[decoded_str_index].replace(/\\r\\n/, "&").split('&');
+			decoded_str = url_split[decoded_str_index].replace(/\\r\\n/g, "&").split('&');
 
 			var indent = 0;
 			var indent_char = "    ";
