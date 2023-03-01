@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hybris SKU Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        if (!window.storedCat) {
+            window.storedCat = $.getJSON('https://api.dyson.com/apiman-gateway/dyson/catalog/1.0/ie/catalogs/ieProductCatalog/Online?format=json') // Re-write without jquery
+        }
+    </script>
+
+    <script>
+        function findId(input) {
+            console.log(input)
+            var a = window.storedCat
+            if (a.responseJSON && a.responseJSON.categories) {
+                for (const b of a.responseJSON.categories) {
+                    if (b.subcategories) {
+                        for (const c of b.subcategories) {
+                            if (c.subcategories) {
+                                for (const d of c.subcategories) {
+                                    if (d.products) {
+                                        for (const e of d.products) {
+                                            if (input == e.globalProductCode) {
+                                                window.matchedProduct = e
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            if (window.matchedProduct) {
+                if (window.matchedProduct.webName) {
+                    console.log(window.matchedProduct.webName)
+                } else {
+                    console.log('Web Name not defined')
+                }
+            } else {
+                console.log('Product not found')
+            }
+
+            window.matchedProduct = ''
+        }
+    </script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <form id="lookup">
+                <input type="text" id="sku" name="sku" placeholder="Enter SKU...">
+                <button class="bigbutton" onclick="findId(document.getElementById('sku').value)">Find ID</button>
+            </form>
+
+            <div class="output">
+                <p>Output Here</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
